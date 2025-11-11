@@ -1,0 +1,173 @@
+<!-- 
+  Sitenyx Shared Package Versions
+  Repository: https://github.com/reza-ariyan/Sitenyx.Build.git
+  
+  This file provides centralized package version management across all Sitenyx microservices.
+  To use: Add this repo as a git submodule and import via Directory.Build.props
+-->
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <!-- ============================================ -->
+    <!-- Azure Packages -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Azure.Core" Version="1.49.0" />
+    <PackageVersion Include="Azure.Identity" Version="1.17.0" />
+    <PackageVersion Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.2" />
+    
+    <!-- ============================================ -->
+    <!-- Testing Packages -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Coverlet.Collector" Version="6.0.4" />
+    <PackageVersion Include="FluentAssertions" Version="8.8.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
+    <PackageVersion Include="Moq" Version="4.20.72" />
+    <PackageVersion Include="NUnit" Version="4.4.0" />
+    <PackageVersion Include="NUnit.Analyzers" Version="4.11.2" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="5.2.0" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="4.8.1" />
+    <PackageVersion Include="Respawn" Version="6.2.1" />
+    <PackageVersion Include="Respawn.Postgres" Version="1.0.15" />
+    <PackageVersion Include="XUnit" Version="2.9.3" />
+    <PackageVersion Include="XUnit.Runner.Visualstudio" Version="3.1.4" />
+    
+    <!-- ============================================ -->
+    <!-- Core Application Packages -->
+    <!-- ============================================ -->
+    <PackageVersion Include="FluentResults" Version="3.16.0" />
+    <PackageVersion Include="FluentValidation" Version="12.1.0" />
+    <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
+    <PackageVersion Include="MediatR" Version="12.4.1" />
+    
+    <!-- ============================================ -->
+    <!-- Entity Framework & Database -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10" />
+    <PackageVersion Include="Npgsql" Version="8.0.5" />
+    <PackageVersion Include="Npgsql.DependencyInjection" Version="8.0.5" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
+    
+    <!-- ============================================ -->
+    <!-- ASP.NET Core -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    
+    <!-- ============================================ -->
+    <!-- Configuration & Extensions -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.10" />
+    
+    <!-- ============================================ -->
+    <!-- API Documentation -->
+    <!-- ============================================ -->
+    <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
+    <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="1.2.39" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
+    
+    <!-- ============================================ -->
+    <!-- OpenIddict Authentication (v5.8.0) -->
+    <!-- Note: IdGate uses v7.x - override in its local file -->
+    <!-- ============================================ -->
+    <PackageVersion Include="OpenIddict.Abstractions" Version="5.8.0" />
+    <PackageVersion Include="OpenIddict.AspNetCore" Version="5.8.0" />
+    <PackageVersion Include="OpenIddict.Core" Version="5.8.0" />
+    <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="5.8.0" />
+    <PackageVersion Include="OpenIddict.Server" Version="5.8.0" />
+    <PackageVersion Include="OpenIddict.Validation.AspNetCore" Version="5.8.0" />
+    <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="5.8.0" />
+    
+    <!-- ============================================ -->
+    <!-- Logging & Monitoring -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Serilog" Version="4.1.0" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageVersion Include="Serilog.Formatting.Compact" Version="3.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Seq" Version="8.0.0" />
+    <PackageVersion Include="Datadog.Trace" Version="3.5.0" />
+    
+    <!-- ============================================ -->
+    <!-- Utilities & Helpers -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
+    <PackageVersion Include="AutoMapper" Version="13.0.1" />
+    <PackageVersion Include="Bogus" Version="35.6.5" />
+    <PackageVersion Include="Polly" Version="8.6.4" />
+    <PackageVersion Include="Scrutor" Version="6.1.0" />
+    <PackageVersion Include="System.Drawing.Common" Version="9.0.10" />
+    <PackageVersion Include="System.Formats.Asn1" Version="9.0.10" />
+    <PackageVersion Include="System.Linq.Async" Version="6.0.1" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.78.0" />
+    
+    <!-- ============================================ -->
+    <!-- Multi-Tenancy -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Finbuckle.MultiTenant" Version="9.0.0" />
+    <PackageVersion Include="Finbuckle.MultiTenant.AspNetCore" Version="9.0.0" />
+    <PackageVersion Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="9.0.0" />
+    
+    <!-- ============================================ -->
+    <!-- Service Discovery & Gateway -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Consul" Version="1.7.14.9" />
+    <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
+    <PackageVersion Include="Steeltoe.Discovery.Consul" Version="4.0.0" />
+    <PackageVersion Include="Steeltoe.Discovery.HttpClients" Version="4.0.0" />
+    
+    <!-- ============================================ -->
+    <!-- Message Bus (Rebus) -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Rebus" Version="8.9.0" />
+    <PackageVersion Include="Rebus.PostgreSql" Version="9.1.1" />
+    <PackageVersion Include="Rebus.RabbitMq" Version="10.1.0" />
+    <PackageVersion Include="Rebus.Serilog" Version="8.1.0" />
+    <PackageVersion Include="Rebus.ServiceProvider" Version="10.6.0" />
+    
+    <!-- ============================================ -->
+    <!-- Caching -->
+    <!-- ============================================ -->
+    <PackageVersion Include="StackExchange.Redis" Version="2.9.32" />
+    
+    <!-- ============================================ -->
+    <!-- Sitenyx Internal - Core & Contracts -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Sitenyx.Core" Version="1.25.314.1730" />
+    <PackageVersion Include="Shared.Contracts" Version="1.25.314.1730" />
+    
+    <!-- ============================================ -->
+    <!-- Sitenyx Internal - Gate SDKs & Contracts -->
+    <!-- Note: Update this version when publishing new gate versions -->
+    <!-- ============================================ -->
+    <PackageVersion Include="CartGate.Contracts" Version="1.25.314.2135" />
+    <PackageVersion Include="CartGate.SDK" Version="1.25.314.2135" />
+    <PackageVersion Include="OrderGate.Contracts" Version="1.25.314.2135" />
+    <PackageVersion Include="OrderGate.SDK" Version="1.25.314.2135" />
+    <PackageVersion Include="PaymentGate.Contracts" Version="1.25.314.2135" />
+    <PackageVersion Include="PaymentGate.SDK" Version="1.25.314.2135" />
+    <PackageVersion Include="ProductGate.Contracts" Version="1.25.314.2135" />
+    <PackageVersion Include="ProductGate.SDK" Version="1.25.314.2135" />
+    <PackageVersion Include="Tenantgate.Contracts" Version="1.25.314.2135" />
+    <PackageVersion Include="Tenantgate.SDK" Version="1.25.314.2135" />
+  </ItemGroup>
+</Project>
+
