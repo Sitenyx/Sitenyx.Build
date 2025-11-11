@@ -152,8 +152,8 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.25.314.1730" />
-    <PackageVersion Include="Shared.Contracts" Version="1.25.314.1730" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.25.315.1400" />
+    <PackageVersion Include="Shared.Contracts" Version="1.25.315.1400" />
     
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate SDKs & Contracts -->
