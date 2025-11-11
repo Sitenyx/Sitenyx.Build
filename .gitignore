@@ -1,0 +1,15 @@
+# This is a minimal .gitignore for the Sitenyx.Build repository
+# We want to commit everything here as it's a configuration repository
+
+# IDE files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# macOS
+.DS_Store
+
