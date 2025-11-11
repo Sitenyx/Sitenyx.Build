@@ -38,22 +38,22 @@
     <!-- ============================================ -->
     <!-- Core Application Packages -->
     <!-- ============================================ -->
-    <PackageVersion Include="FluentResults" Version="3.16.0" />
+    <PackageVersion Include="FluentResults" Version="4.0.0" />
     <PackageVersion Include="FluentValidation" Version="12.1.0" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
-    <PackageVersion Include="MediatR" Version="12.4.1" />
+    <PackageVersion Include="MediatR" Version="13.1.0" />
     
     <!-- ============================================ -->
     <!-- Entity Framework & Database -->
     <!-- ============================================ -->
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10" />
-    <PackageVersion Include="Npgsql" Version="8.0.5" />
-    <PackageVersion Include="Npgsql.DependencyInjection" Version="8.0.5" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
+    <PackageVersion Include="Npgsql" Version="8.0.4" />
+    <PackageVersion Include="Npgsql.DependencyInjection" Version="9.0.4" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     
     <!-- ============================================ -->
     <!-- ASP.NET Core -->
@@ -61,7 +61,7 @@
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.10" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
     <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.10" />
     <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     
@@ -80,36 +80,37 @@
     <!-- ============================================ -->
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="1.2.39" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.10.1" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.8.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
     
     <!-- ============================================ -->
-    <!-- OpenIddict Authentication (v5.8.0) -->
-    <!-- Note: IdGate uses v7.x - override in its local file -->
+    <!-- OpenIddict Authentication (v7.1.0) -->
+    <!-- Note: All services now use v7.x for consistency with Core -->
     <!-- ============================================ -->
-    <PackageVersion Include="OpenIddict.Abstractions" Version="5.8.0" />
-    <PackageVersion Include="OpenIddict.AspNetCore" Version="5.8.0" />
-    <PackageVersion Include="OpenIddict.Core" Version="5.8.0" />
-    <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="5.8.0" />
-    <PackageVersion Include="OpenIddict.Server" Version="5.8.0" />
-    <PackageVersion Include="OpenIddict.Validation.AspNetCore" Version="5.8.0" />
-    <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="5.8.0" />
+    <PackageVersion Include="OpenIddict.Abstractions" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.AspNetCore" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Core" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Server" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Server.AspNetCore" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Validation.AspNetCore" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="7.1.0" />
     
     <!-- ============================================ -->
     <!-- Logging & Monitoring -->
     <!-- ============================================ -->
-    <PackageVersion Include="Serilog" Version="4.1.0" />
-    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageVersion Include="Serilog" Version="4.3.0" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageVersion Include="Serilog.Formatting.Compact" Version="3.0.0" />
-    <PackageVersion Include="Serilog.Sinks.Seq" Version="8.0.0" />
-    <PackageVersion Include="Datadog.Trace" Version="3.5.0" />
+    <PackageVersion Include="Serilog.Sinks.Seq" Version="9.0.0" />
+    <PackageVersion Include="Datadog.Trace" Version="3.30.0" />
     
     <!-- ============================================ -->
     <!-- Utilities & Helpers -->
     <!-- ============================================ -->
     <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
-    <PackageVersion Include="AutoMapper" Version="13.0.1" />
+    <PackageVersion Include="AutoMapper" Version="15.1.0" />
     <PackageVersion Include="Bogus" Version="35.6.5" />
     <PackageVersion Include="Polly" Version="8.6.4" />
     <PackageVersion Include="Scrutor" Version="6.1.0" />
@@ -122,9 +123,9 @@
     <!-- ============================================ -->
     <!-- Multi-Tenancy -->
     <!-- ============================================ -->
-    <PackageVersion Include="Finbuckle.MultiTenant" Version="9.0.0" />
-    <PackageVersion Include="Finbuckle.MultiTenant.AspNetCore" Version="9.0.0" />
-    <PackageVersion Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="9.0.0" />
+    <PackageVersion Include="Finbuckle.MultiTenant" Version="9.4.2" />
+    <PackageVersion Include="Finbuckle.MultiTenant.AspNetCore" Version="9.4.2" />
+    <PackageVersion Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="9.4.2" />
     
     <!-- ============================================ -->
     <!-- Service Discovery & Gateway -->
