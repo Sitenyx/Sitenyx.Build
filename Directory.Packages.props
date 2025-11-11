@@ -51,7 +51,7 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10" />
-    <PackageVersion Include="Npgsql" Version="8.0.4" />
+    <PackageVersion Include="Npgsql" Version="9.0.4" />
     <PackageVersion Include="Npgsql.DependencyInjection" Version="9.0.4" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     
