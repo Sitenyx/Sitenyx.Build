@@ -157,18 +157,9 @@
     
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate SDKs & Contracts -->
-    <!-- Note: Update this version when publishing new gate versions -->
+    <!-- Note: Gate SDKs/Contracts are defined in each service's local Directory.Packages.props -->
+    <!--       based on their specific dependencies. This keeps dependency management explicit. -->
     <!-- ============================================ -->
-    <PackageVersion Include="CartGate.Contracts" Version="1.25.314.2135" />
-    <PackageVersion Include="CartGate.SDK" Version="1.25.314.2135" />
-    <PackageVersion Include="OrderGate.Contracts" Version="1.25.314.2135" />
-    <PackageVersion Include="OrderGate.SDK" Version="1.25.314.2135" />
-    <PackageVersion Include="PaymentGate.Contracts" Version="1.25.314.2135" />
-    <PackageVersion Include="PaymentGate.SDK" Version="1.25.314.2135" />
-    <PackageVersion Include="ProductGate.Contracts" Version="1.25.314.2135" />
-    <PackageVersion Include="ProductGate.SDK" Version="1.25.314.2135" />
-    <PackageVersion Include="Tenantgate.Contracts" Version="1.25.314.2135" />
-    <PackageVersion Include="Tenantgate.SDK" Version="1.25.314.2135" />
   </ItemGroup>
 </Project>
 
