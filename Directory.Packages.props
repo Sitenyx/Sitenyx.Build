@@ -75,19 +75,19 @@
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.10.3" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.0.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.0.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
     <!-- ============================================ -->
     <!-- OpenIddict Authentication (v7.1.0) -->
     <!-- Note: All services now use v7.x for consistency with Core -->
     <!-- ============================================ -->
-    <PackageVersion Include="OpenIddict.Abstractions" Version="7.1.0" />
-    <PackageVersion Include="OpenIddict.AspNetCore" Version="7.1.0" />
-    <PackageVersion Include="OpenIddict.Core" Version="7.1.0" />
-    <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Abstractions" Version="7.2.0" />
+    <PackageVersion Include="OpenIddict.AspNetCore" Version="7.2.0" />
+    <PackageVersion Include="OpenIddict.Core" Version="7.2.0" />
+    <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="7.2.0" />
     <PackageVersion Include="OpenIddict.Server" Version="7.1.0" />
-    <PackageVersion Include="OpenIddict.Server.AspNetCore" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Server.AspNetCore" Version="7.2.0" />
     <PackageVersion Include="OpenIddict.Validation.AspNetCore" Version="7.2.0" />
     <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="7.2.0" />
     <!-- ============================================ -->
