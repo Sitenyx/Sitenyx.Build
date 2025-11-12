@@ -56,7 +56,7 @@
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="10.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <!-- ============================================ -->
@@ -74,9 +74,9 @@
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.27" />
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.10.1" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.10.3" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.6" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="6.9.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.0.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
     <!-- ============================================ -->
     <!-- OpenIddict Authentication (v7.1.0) -->
@@ -88,8 +88,8 @@
     <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="7.1.0" />
     <PackageVersion Include="OpenIddict.Server" Version="7.1.0" />
     <PackageVersion Include="OpenIddict.Server.AspNetCore" Version="7.1.0" />
-    <PackageVersion Include="OpenIddict.Validation.AspNetCore" Version="7.1.0" />
-    <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="7.1.0" />
+    <PackageVersion Include="OpenIddict.Validation.AspNetCore" Version="7.2.0" />
+    <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="7.2.0" />
     <!-- ============================================ -->
     <!-- Logging & Monitoring -->
     <!-- ============================================ -->
@@ -110,7 +110,7 @@
     <PackageVersion Include="System.Formats.Asn1" Version="10.0.0" />
     <PackageVersion Include="System.Linq.Async" Version="6.0.3" />
     <PackageVersion Include="System.Text.Json" Version="10.0.0" />
-    <PackageVersion Include="Microsoft.Identity.Client" Version="4.78.0" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.79.0" />
     <!-- ============================================ -->
     <!-- Multi-Tenancy -->
     <!-- ============================================ -->
@@ -139,12 +139,13 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.25.315.2230" />
-    <PackageVersion Include="Shared.Contracts" Version="1.25.315.2230" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.25.316.1212" />
+    <PackageVersion Include="Shared.Contracts" Version="1.25.316.1212" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate SDKs & Contracts -->
     <!-- Note: Gate SDKs/Contracts are defined in each service's local Directory.Packages.props -->
     <!--       based on their specific dependencies. This keeps dependency management explicit. -->
     <!-- ============================================ -->
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0" />
   </ItemGroup>
 </Project>
