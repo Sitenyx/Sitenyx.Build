@@ -68,6 +68,7 @@
     <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="10.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0" />
     <!-- ============================================ -->
     <!-- API Documentation -->
     <!-- ============================================ -->
@@ -139,13 +140,12 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.25.316.1212" />
-    <PackageVersion Include="Shared.Contracts" Version="1.25.316.1212" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.25.317.927" />
+    <PackageVersion Include="Sitenyx.Shrared" Version="1.25.317.927" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate SDKs & Contracts -->
     <!-- Note: Gate SDKs/Contracts are defined in each service's local Directory.Packages.props -->
     <!--       based on their specific dependencies. This keeps dependency management explicit. -->
     <!-- ============================================ -->
-    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0" />
   </ItemGroup>
 </Project>
