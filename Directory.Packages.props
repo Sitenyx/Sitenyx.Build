@@ -75,7 +75,7 @@
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.27" />
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.10.3" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.11.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.0.1" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.0.1" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
@@ -98,7 +98,7 @@
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageVersion Include="Serilog.Formatting.Compact" Version="3.0.0" />
     <PackageVersion Include="Serilog.Sinks.Seq" Version="9.0.0" />
-    <PackageVersion Include="Datadog.Trace" Version="3.30.0" />
+    <PackageVersion Include="Datadog.Trace" Version="3.31.0" />
     <!-- ============================================ -->
     <!-- Utilities & Helpers -->
     <!-- ============================================ -->
@@ -111,13 +111,13 @@
     <PackageVersion Include="System.Formats.Asn1" Version="10.0.0" />
     <PackageVersion Include="System.Linq.Async" Version="6.0.3" />
     <PackageVersion Include="System.Text.Json" Version="10.0.0" />
-    <PackageVersion Include="Microsoft.Identity.Client" Version="4.79.1" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.79.2" />
     <!-- ============================================ -->
     <!-- Multi-Tenancy -->
     <!-- ============================================ -->
-    <PackageVersion Include="Finbuckle.MultiTenant" Version="9.4.2" />
-    <PackageVersion Include="Finbuckle.MultiTenant.AspNetCore" Version="9.4.2" />
-    <PackageVersion Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="9.4.2" />
+    <PackageVersion Include="Finbuckle.MultiTenant" Version="10.0.0" />
+    <PackageVersion Include="Finbuckle.MultiTenant.AspNetCore" Version="10.0.0" />
+    <PackageVersion Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="10.0.0" />
     <!-- ============================================ -->
     <!-- Service Discovery & Gateway -->
     <!-- ============================================ -->
@@ -132,16 +132,16 @@
     <PackageVersion Include="Rebus.PostgreSql" Version="9.1.1" />
     <PackageVersion Include="Rebus.RabbitMq" Version="10.1.0" />
     <PackageVersion Include="Rebus.Serilog" Version="8.1.0" />
-    <PackageVersion Include="Rebus.ServiceProvider" Version="10.6.0" />
+    <PackageVersion Include="Rebus.ServiceProvider" Version="10.7.0" />
     <!-- ============================================ -->
     <!-- Caching -->
     <!-- ============================================ -->
-    <PackageVersion Include="StackExchange.Redis" Version="2.9.32" />
+    <PackageVersion Include="StackExchange.Redis" Version="2.10.1" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.25.321.243" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.25.321.243" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.25.326.2323" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.25.326.2323" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate SDKs & Contracts -->
     <!-- Note: Gate SDKs/Contracts are defined in each service's local Directory.Packages.props -->
