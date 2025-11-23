@@ -47,7 +47,7 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0" />
-    <PackageVersion Include="Npgsql" Version="10.0.0-rc.1" />
+    <PackageVersion Include="Npgsql" Version="10.0.0" />
     <PackageVersion Include="Npgsql.DependencyInjection" Version="10.0.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
     <!-- ============================================ -->
