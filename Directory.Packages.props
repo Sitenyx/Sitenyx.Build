@@ -14,7 +14,7 @@
     <!-- Azure Packages -->
     <!-- ============================================ -->
     <PackageVersion Include="Azure.Core" Version="1.50.0" />
-    <PackageVersion Include="Azure.Identity" Version="1.17.0" />
+    <PackageVersion Include="Azure.Identity" Version="1.17.1" />
     <PackageVersion Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.2" />
     <!-- ============================================ -->
     <!-- Testing Packages -->
