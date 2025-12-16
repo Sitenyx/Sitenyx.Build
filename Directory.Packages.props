@@ -1,7 +1,7 @@
 <!-- 
   Sitenyx Shared Package Versions
   Repository: https://github.com/reza-ariyan/Sitenyx.Build.git
-   
+  
   This file provides centralized package version management across all Sitenyx microservices.
   To use: Add this repo as a git submodule and import via Directory.Build.props
 -->
@@ -145,8 +145,8 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.25.347.251" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.25.347.251" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.25.350.1035" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.25.350.1035" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate Sdks & Contracts -->
     <!-- Note: Gate Sdks/Contracts are defined in each service's local Directory.Packages.props -->
