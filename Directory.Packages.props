@@ -1,7 +1,7 @@
 <!-- 
   Sitenyx Shared Package Versions
   Repository: https://github.com/reza-ariyan/Sitenyx.Build.git
-  
+   
   This file provides centralized package version management across all Sitenyx microservices.
   To use: Add this repo as a git submodule and import via Directory.Build.props
 -->
