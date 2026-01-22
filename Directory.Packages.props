@@ -128,7 +128,7 @@
     <!-- ============================================ -->
     <!-- Service Discovery & Gateway -->
     <!-- ============================================ -->
-    <PackageVersion Include="Consul" Version="1.7.14.9" />
+    <PackageVersion Include="Consul" Version="1.7.14.10" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
     <PackageVersion Include="Steeltoe.Discovery.Consul" Version="4.0.0" />
     <PackageVersion Include="Steeltoe.Discovery.HttpClients" Version="4.0.0" />
