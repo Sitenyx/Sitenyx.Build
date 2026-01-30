@@ -81,7 +81,7 @@
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.27" />
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.12.14" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.12.24" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
@@ -104,7 +104,7 @@
     <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageVersion Include="Serilog.Formatting.Compact" Version="3.0.0" />
     <PackageVersion Include="Serilog.Sinks.Seq" Version="9.0.0" />
-    <PackageVersion Include="Datadog.Trace" Version="3.35.0" />
+    <PackageVersion Include="Datadog.Trace" Version="3.36.0" />
     <!-- ============================================ -->
     <!-- Utilities & Helpers -->
     <!-- ============================================ -->
@@ -147,8 +147,8 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.29.1934" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.26.29.1934" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.30.1315" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.26.30.1315" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate Sdks & Contracts -->
     <!-- Note: Gate Sdks/Contracts are defined in each service's local Directory.Packages.props -->
