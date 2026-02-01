@@ -11,11 +11,16 @@ This repository provides centralized NuGet package version management across all
 ### Adding to a New Microservice
 
 1. **Remove git submodule:**
-   ```bash
+   ```bash   
+      git submodule deinit -f build
+      rm -rf .git/modules/build
       git rm -r --cached build
       rm -rf build
-      git commit -m "Remove existing build folder to add submodule"
+      git add .
+      git commit -am "Remove existing build folder to add submodule"
       git submodule add https://github.com/reza-ariyan/Sitenyx.Build.git build
+      git add .
+      git commit -am "Add build submodule"
    ```
 
 
