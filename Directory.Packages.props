@@ -81,9 +81,9 @@
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.27" />
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.12.24" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.12.30" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.1" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
     <!-- ============================================ -->
     <!-- OpenIddict Authentication (v7.1.0) -->
@@ -117,7 +117,7 @@
     <PackageVersion Include="System.Formats.Asn1" Version="10.0.0" />
     <PackageVersion Include="System.Linq.Async" Version="7.0.0" />
     <PackageVersion Include="System.Text.Json" Version="10.0.0" />
-    <PackageVersion Include="Microsoft.Identity.Client" Version="4.81.0" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.82.0" />
     <!-- ============================================ -->
     <!-- Multi-Tenancy -->
     <!-- ============================================ -->
@@ -130,8 +130,8 @@
     <!-- ============================================ -->
     <PackageVersion Include="Consul" Version="1.7.14.10" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
-    <PackageVersion Include="Steeltoe.Discovery.Consul" Version="4.0.0" />
-    <PackageVersion Include="Steeltoe.Discovery.HttpClients" Version="4.0.0" />
+    <PackageVersion Include="Steeltoe.Discovery.Consul" Version="4.1.0" />
+    <PackageVersion Include="Steeltoe.Discovery.HttpClients" Version="4.1.0" />
     <!-- ============================================ -->
     <!-- Message Bus (Rebus) -->
     <!-- ============================================ -->
