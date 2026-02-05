@@ -83,7 +83,7 @@
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.12.34" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.1" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.2" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
     <!-- ============================================ -->
     <!-- OpenIddict Authentication (v7.1.0) -->
