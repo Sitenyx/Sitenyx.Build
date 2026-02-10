@@ -104,7 +104,7 @@
     <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageVersion Include="Serilog.Formatting.Compact" Version="3.0.0" />
     <PackageVersion Include="Serilog.Sinks.Seq" Version="9.0.0" />
-    <PackageVersion Include="Datadog.Trace" Version="3.36.0" />
+    <PackageVersion Include="Datadog.Trace" Version="3.37.0" />
     <!-- ============================================ -->
     <!-- Utilities & Helpers -->
     <!-- ============================================ -->
@@ -147,8 +147,8 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.40.1600" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.26.40.1600" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.41.1414" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.26.41.1414" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate Sdks & Contracts -->
     <!-- Note: Gate Sdks/Contracts are defined in each service's local Directory.Packages.props -->
