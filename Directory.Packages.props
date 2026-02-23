@@ -106,6 +106,12 @@
     <PackageVersion Include="Serilog.Sinks.Seq" Version="9.0.0" />
     <PackageVersion Include="Datadog.Trace" Version="3.37.0" />
     <!-- ============================================ -->
+    <!-- OpenTelemetry / Prometheus Metrics -->
+    <!-- ============================================ -->
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.0" />
+    <PackageVersion Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.15.0-beta.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0" />
+    <!-- ============================================ -->
     <!-- Utilities & Helpers -->
     <!-- ============================================ -->
     <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
