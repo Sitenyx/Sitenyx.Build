@@ -45,7 +45,7 @@
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
     <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
-    <PackageVersion Include="MediatR" Version="14.0.0" />
+    <PackageVersion Include="MediatR" Version="14.1.0" />
     <!-- ============================================ -->
     <!-- Entity Framework & Database -->
     <!-- ============================================ -->
@@ -81,7 +81,7 @@
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.27" />
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.12.50" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.13.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.4" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
@@ -115,9 +115,9 @@
     <!-- Utilities & Helpers -->
     <!-- ============================================ -->
     <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
-    <PackageVersion Include="AutoMapper" Version="16.0.0" />
+    <PackageVersion Include="AutoMapper" Version="16.1.0" />
     <PackageVersion Include="Bogus" Version="35.6.5" />
-    <PackageVersion Include="Polly" Version="8.6.5" />
+    <PackageVersion Include="Polly" Version="8.6.6" />
     <PackageVersion Include="Scrutor" Version="7.0.0" />
     <PackageVersion Include="System.Drawing.Common" Version="10.0.2" />
     <PackageVersion Include="System.Formats.Asn1" Version="10.0.0" />
