@@ -147,14 +147,15 @@
     <PackageVersion Include="Rebus.Serilog" Version="8.1.0" />
     <PackageVersion Include="Rebus.ServiceProvider" Version="10.7.2" />
     <!-- ============================================ -->
-    <!-- Caching -->
+    <!-- Caching & Distributed Locking -->
     <!-- ============================================ -->
     <PackageVersion Include="StackExchange.Redis" Version="2.11.8" />
+    <PackageVersion Include="DistributedLock.Redis" Version="1.0.3" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.68.300" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.26.68.300" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.68.1449" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.26.68.1449" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate Sdks & Contracts -->
     <!-- Note: Gate Sdks/Contracts are defined in each service's local Directory.Packages.props -->
