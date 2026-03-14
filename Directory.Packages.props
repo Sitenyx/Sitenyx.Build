@@ -53,7 +53,7 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.5" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2" />
-    <PackageVersion Include="Npgsql" Version="10.0.1" />
+    <PackageVersion Include="Npgsql" Version="10.0.2" />
     <PackageVersion Include="Npgsql.DependencyInjection" Version="10.0.2" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
     <!-- ============================================ -->
@@ -89,12 +89,12 @@
     <!-- OpenIddict Authentication (v7.1.0) -->
     <!-- Note: All services now use v7.x for consistency with Core -->
     <!-- ============================================ -->
-    <PackageVersion Include="OpenIddict.Abstractions" Version="7.2.0" />
-    <PackageVersion Include="OpenIddict.AspNetCore" Version="7.2.0" />
-    <PackageVersion Include="OpenIddict.Core" Version="7.2.0" />
-    <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="7.2.0" />
-    <PackageVersion Include="OpenIddict.Server" Version="7.2.0" />
-    <PackageVersion Include="OpenIddict.Server.AspNetCore" Version="7.2.0" />
+    <PackageVersion Include="OpenIddict.Abstractions" Version="7.4.0" />
+    <PackageVersion Include="OpenIddict.AspNetCore" Version="7.4.0" />
+    <PackageVersion Include="OpenIddict.Core" Version="7.4.0" />
+    <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="7.4.0" />
+    <PackageVersion Include="OpenIddict.Server" Version="7.4.0" />
+    <PackageVersion Include="OpenIddict.Server.AspNetCore" Version="7.4.0" />
     <PackageVersion Include="OpenIddict.Validation.AspNetCore" Version="7.4.0" />
     <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="7.4.0" />
     <!-- ============================================ -->
