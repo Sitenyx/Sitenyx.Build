@@ -60,10 +60,10 @@
     <!-- ASP.NET Core -->
     <!-- ============================================ -->
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.5" />
-    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.5" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
-    <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="10.0.5" />
     <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <!-- ============================================ -->
     <!-- Configuration & Extensions -->
@@ -82,7 +82,7 @@
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.13.17" />
-    <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.7" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.1.7" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
     <!-- ============================================ -->
