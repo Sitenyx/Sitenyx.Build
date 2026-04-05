@@ -156,9 +156,9 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.95.2307" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.26.95.2307" />
-    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.95.2307" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.95.2354" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.26.95.2354" />
+    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.95.2354" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate Sdks & Contracts -->
     <!-- Note: Gate Sdks/Contracts are defined in each service's local Directory.Packages.props -->
