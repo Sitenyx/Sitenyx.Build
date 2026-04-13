@@ -34,6 +34,7 @@
     <PackageVersion Include="NUnit.Analyzers" Version="4.11.2" />
     <PackageVersion Include="NUnit3TestAdapter" Version="6.1.0" />
     <PackageVersion Include="Testcontainers.PostgreSql" Version="4.11.0" />
+    <PackageVersion Include="Testcontainers.Redis" Version="4.11.0" />
     <PackageVersion Include="Respawn" Version="7.0.0" />
     <PackageVersion Include="Respawn.Postgres" Version="1.0.15" />
     <PackageVersion Include="XUnit" Version="2.9.3" />
