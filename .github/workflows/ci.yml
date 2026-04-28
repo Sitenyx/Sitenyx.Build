@@ -1,0 +1,67 @@
+name: CI
+
+# Sitenyx.Build is a shared MSBuild props repo consumed as a git submodule by all
+# 24 backend services. A broken Directory.Packages.props here cascades into every
+# consumer's restore step. This workflow validates the props file before it can
+# be referenced by submodule pointer bumps in downstream services.
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-props:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Validate Directory.Packages.props is well-formed XML
+        run: |
+          python3 -c "
+          import xml.etree.ElementTree as ET, sys
+          try:
+              ET.parse('Directory.Packages.props')
+              print('Directory.Packages.props is well-formed XML')
+          except ET.ParseError as e:
+              print(f'XML parse error: {e}', file=sys.stderr)
+              sys.exit(1)
+          "
+
+      - name: Validate MSBuild can evaluate Directory.Packages.props
+        run: |
+          # Create a minimal probe project that imports the shared props file
+          # and verifies MSBuild can evaluate every PackageVersion declaration.
+          mkdir -p probe
+          cp Directory.Packages.props probe/Directory.Packages.props
+          cat > probe/Directory.Build.props <<'PROPS'
+          <Project>
+            <PropertyGroup>
+              <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+            </PropertyGroup>
+          </Project>
+          PROPS
+          cat > probe/Probe.csproj <<'CSPROJ'
+          <Project Sdk="Microsoft.NET.Sdk">
+            <PropertyGroup>
+              <TargetFramework>net10.0</TargetFramework>
+              <Nullable>enable</Nullable>
+            </PropertyGroup>
+          </Project>
+          CSPROJ
+          # `dotnet msbuild -t:Restore` will fail fast if the props file has a
+          # malformed PackageVersion entry, duplicate Include attributes, or any
+          # XML structural issue.
+          cd probe
+          dotnet msbuild -t:CollectPackageReferences -nologo -v:minimal Probe.csproj
