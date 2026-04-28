@@ -158,7 +158,7 @@
     <PackageVersion Include="DistributedLock.Redis" Version="1.1.1" />
     <PackageVersion Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="10.0.5" />
     <!-- ============================================ -->
-    <!-- Sitenyx Internal - Core & Contracts -->
+    <!-- Sitenyx Internal - Core & Contracts --> 
     <!-- ============================================ -->
     <PackageVersion Include="Sitenyx.Core" Version="1.26.119.10" />
     <PackageVersion Include="Sitenyx.Shared" Version="1.26.119.10" />
