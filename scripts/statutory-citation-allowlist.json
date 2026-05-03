@@ -1,0 +1,174 @@
+{
+  "$schema": "./statutory-citation-allowlist.schema.json",
+  "$comment": "Allow-list of valid §-references per Danish statute. Used by lint-statutory-citations.js (CG-013). Source of truth for the actual citation strings is Shared.Contracts/Compliance/DanishLegalCitations.cs — this file mirrors it as the §-NUMBER RANGE form so the lint can validate any cited § (with or without 'stk. N' / letter suffixes a/b/c/A/B/C). Updated 2026-05-03.",
+  "statutes": {
+    "Bogføringsloven": {
+      "fullName": "Bookkeeping Act (LBK 2022-05-19)",
+      "validParagraphs": [
+        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+        "12", "13", "14", "15", "16", "17", "18", "19", "20",
+        "21", "22", "23", "24", "25", "26", "27", "28", "29",
+        "30", "31", "32", "33", "34", "35", "36", "37"
+      ],
+      "explicitlyInvalid": {
+        "11": "Ophævet (repealed) in the 2022 lov. Use §4 + §10 for digital bilag retention.",
+        "99": "Hallucination — § does not exist."
+      },
+      "diacriticVariants": ["Bogforingsloven"]
+    },
+    "Selskabsloven": {
+      "fullName": "Companies Act (LBK 2024-03-12)",
+      "validParagraphs": "1-374",
+      "commonlyCited": ["119", "184", "185", "210", "225", "245", "246", "247", "248", "249"],
+      "diacriticVariants": []
+    },
+    "Årsregnskabsloven": {
+      "fullName": "Financial Statements Act (LBK 2024-04-15)",
+      "shortForm": "ÅRL",
+      "validParagraphs": "1-167",
+      "explicitlyInvalid": {
+        "400": "Hallucination — § does not exist."
+      },
+      "diacriticVariants": ["Aarsregnskabsloven", "Arsregnskabsloven"]
+    },
+    "Hvidvaskloven": {
+      "fullName": "Anti-Money-Laundering Act (LBK 2023-09-26)",
+      "validParagraphs": "1-87",
+      "diacriticVariants": []
+    },
+    "Renteloven": {
+      "fullName": "Late Payment Interest Act (LBK 2014-08-22)",
+      "validParagraphs": "1-12",
+      "commonlyCited": ["3", "3a", "5", "9a", "9b", "10"],
+      "diacriticVariants": []
+    },
+    "Forbrugeraftaleloven": {
+      "fullName": "Consumer Contracts Act",
+      "validParagraphs": "1-50",
+      "diacriticVariants": []
+    },
+    "Forældelsesloven": {
+      "fullName": "Limitation Act (LBK 2015-12-22)",
+      "validParagraphs": "1-29",
+      "explicitlyInvalid": {
+        "99": "Hallucination — Forældelsesloven highest § is 30. §99 does not exist.",
+        "210": "Hallucination — §210 lives in Selskabsloven (kapitalejerlån), not Forældelsesloven."
+      },
+      "diacriticVariants": ["Foraeldelsesloven"]
+    },
+    "Ligningsloven": {
+      "fullName": "Tax Assessment Act",
+      "validParagraphs": "1-90",
+      "commonlyCited": ["2", "8", "9A", "9B", "9C", "16"],
+      "diacriticVariants": []
+    },
+    "Selskabsskatteloven": {
+      "fullName": "Corporate Income Tax Act (LBK 2024-01-15)",
+      "validParagraphs": "1-43",
+      "commonlyCited": ["1", "12", "13", "17", "29", "29A", "29B", "30", "31", "31A", "31C"],
+      "explicitlyInvalid": {
+        "50C": "Hallucination — § does not exist (Selskabsskatteloven highest § is 43).",
+        "100": "Hallucination — § does not exist."
+      },
+      "diacriticVariants": []
+    },
+    "Inkassoloven": {
+      "fullName": "Debt Collection Act (LBK 2014-12-22)",
+      "validParagraphs": "1-30",
+      "explicitlyInvalid": {
+        "11": "§11 in Inkassoloven is the venterids-undtagelse, not inkasso-overdragelse — frequently misused. Use §10 (inkassovarsel) or §9 (autorisation) instead."
+      },
+      "diacriticVariants": []
+    },
+    "Revisorloven": {
+      "fullName": "Auditor Act (LBK 2024-04-15)",
+      "validParagraphs": "1-58",
+      "diacriticVariants": []
+    },
+    "Skattekontrolloven": {
+      "fullName": "Tax Control Act (LBK 2017-12-19)",
+      "validParagraphs": "1-90",
+      "diacriticVariants": []
+    },
+    "Skatteforvaltningsloven": {
+      "fullName": "Tax Administration Act (LBK 2024-01-15)",
+      "validParagraphs": "1-65",
+      "diacriticVariants": []
+    },
+    "Momsloven": {
+      "fullName": "VAT Act (LBK 2024-02-15)",
+      "validParagraphs": "1-85",
+      "diacriticVariants": []
+    },
+    "Statistikloven": {
+      "fullName": "Statistics Act (LBK 2018-08-21)",
+      "validParagraphs": "1-60",
+      "diacriticVariants": []
+    },
+    "Kildeskatteloven": {
+      "fullName": "Withholding Tax Act (LBK 2024-01-15)",
+      "validParagraphs": "1-100",
+      "diacriticVariants": []
+    },
+    "Lønsumsafgiftsloven": {
+      "fullName": "Payroll Tax Act (LBK 2018-04-12)",
+      "validParagraphs": "1-22",
+      "alternateForms": ["Lønsumsafgiftslovens"],
+      "diacriticVariants": ["Lonsumsafgiftsloven", "Lonsumsafgiftslovens"]
+    },
+    "Arbejdsmarkedsbidragsloven": {
+      "fullName": "Labour Market Contribution Act (LBK 2014-04-29)",
+      "validParagraphs": "1-22",
+      "alternateForms": ["Arbejdsmarkedsbidragslovens"],
+      "diacriticVariants": []
+    }
+  },
+  "rejectedStatutes": {
+    "Persondataloven": {
+      "reason": "Repealed 2018-05-25 by GDPR (forordning 2016/679) + Databeskyttelsesloven. Citing Persondataloven in new code is always wrong — replace with 'GDPR Art. N' or 'Databeskyttelsesloven §N'.",
+      "replacement": "GDPR + Databeskyttelsesloven"
+    },
+    "Bogforingsloven": {
+      "reason": "ASCII fallback for Bogføringsloven detected without diacritic. Use the canonical Danish form 'Bogføringsloven' (with ø).",
+      "replacement": "Bogføringsloven",
+      "kind": "diacritic-typo"
+    }
+  },
+  "knownHallucinations": [
+    "Bogføringsloven §11",
+    "Bogføringsloven §99",
+    "Forældelsesloven §99",
+    "Forældelsesloven §210",
+    "ÅRL §400",
+    "Selskabsskatteloven §50C",
+    "Inkassoloven §11"
+  ],
+  "scanGlobs": {
+    "include": [
+      "**/*.cs",
+      "**/*.tsx",
+      "**/*.ts",
+      "messages/**/*.json"
+    ],
+    "exclude": [
+      "**/bin/**",
+      "**/obj/**",
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.git/**",
+      "**/qa-findings/**",
+      "**/Tests/Compliance/DanishLegalCitationsTests.cs",
+      "**/Citations/BogforingslovenCitationRegressionTests.cs",
+      "**/AiAdvisorGroundingRoundTripTests.cs",
+      "**/AiAdvisorCitationValidatorTests.cs",
+      "**/Constants/StatuteCitations.cs",
+      "**/Compliance/DanishLegalCitations.cs",
+      "**/scripts/lint-statutory-citations.js",
+      "**/scripts/lint-statutory-citations.test.js",
+      "**/scripts/statutory-citation-allowlist.json"
+    ]
+  },
+  "historicalCommentMarker": "// historical:"
+}
