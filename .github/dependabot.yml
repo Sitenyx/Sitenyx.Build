@@ -1,0 +1,34 @@
+# Dependabot configuration — Phase 4 Item E3 (2026-05-04).
+#
+# Periodic CVE re-scan automation: weekly NuGet dependency PRs.
+# Supplements the in-CI `dotnet list package --vulnerable` gate added to
+# sitenyx-infra/.github/workflows/test-dotnet.yml in the same sweep.
+#
+# Reviewers list deliberately scoped to the project owner so PRs land in
+# his inbox; expand as the team grows.
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "ariyan"
+    labels:
+      - "dependencies"
+      - "nuget"
+      - "auto-updated"
+
+  # Workflow files themselves (actions/checkout, setup-dotnet, ...).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "ariyan"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "auto-updated"
