@@ -65,6 +65,26 @@ const REQUIRED_ENTITIES = new Set([
   "MomsTransaction",
   "BadDebtVatRecovery",
   "CreditNote",
+  // Phase-2.5 settings + sub-entities (2026-05-05) — extends the lint to the
+  // 8 entities surfaced by the CGP-98 / CGP-125 Phase-2 audit follow-on:
+  //   - 6 per-Gate Settings rows (concurrent firm-member edits via the
+  //     Settings forms in AdminGate);
+  //   - AlertRule (KpiGate threshold + cooldown — concurrent threshold
+  //     tweaks across teams);
+  //   - RykkerTemplate (DebtorGate — concurrent template edits across
+  //     legal-vs-friendly tone branches);
+  //   - Website (WebGate — two-tab Update);
+  //   - ComplianceProfile (ComplianceGate — concurrent admin-vs-accountant
+  //     edits to revisor-fravalg or capital-DKK).
+  "CashGateSettings",
+  "KpiGateSettings",
+  "AlertRule",
+  "BudgetGateSettings",
+  "DebtorSettings",
+  "RykkerTemplate",
+  "ExpenseGateSettings",
+  "ComplianceProfile",
+  "Website",
 ]);
 
 // Entities explicitly opted out (append-only, immutable, etc).
