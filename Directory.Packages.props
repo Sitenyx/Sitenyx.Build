@@ -169,11 +169,11 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.145.1234" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.26.145.1234" />
-    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.145.1234" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.145.1382" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.26.145.1382" />
+    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.145.1382" />
     <!-- Sitenyx.Analyzers (Roslyn analyzer NuGet, pinned by the Core publish autoflow). -->
-    <PackageVersion Include="Sitenyx.Analyzers" Version="1.26.145.1234" />
+    <PackageVersion Include="Sitenyx.Analyzers" Version="1.26.145.1382" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate Sdks & Contracts -->
     <!-- Note: Gate Sdks/Contracts are defined in each service's local Directory.Packages.props -->
