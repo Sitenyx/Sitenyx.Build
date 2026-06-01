@@ -180,4 +180,28 @@
     <!--       based on their specific dependencies. This keeps dependency management explicit. -->
     <!-- ============================================ -->
   </ItemGroup>
+  <!-- ================================================================================== -->
+  <!-- Sitenyx.Analyzers — platform-wide auto-wiring via GlobalPackageReference            -->
+  <!--                                                                                    -->
+  <!-- Without this block the analyzer NuGet stays unreferenced and SX0005/006/076/077/   -->
+  <!-- 078/080/082 silently DO NOT FIRE on consumer projects. GlobalPackageReference      -->
+  <!-- (NuGet CPM, SDK 6.0+) injects the reference into every csproj under this           -->
+  <!-- Directory.Packages.props scope as if each declared a PackageReference explicitly:  -->
+  <!--                                                                                    -->
+  <!--   PrivateAssets="all" — analyzer DLLs do NOT propagate to consumers of THIS NuGet  -->
+  <!--                        (each downstream consumer wires its own analyzers).         -->
+  <!--   IncludeAssets="analyzers; build" — load the analyzer DLL + any MSBuild targets   -->
+  <!--                        the package ships; explicitly excludes "compile"/"runtime"  -->
+  <!--                        (analyzers must never leak into the consumer's runtime).    -->
+  <!--                                                                                    -->
+  <!-- Opt-out: set <UsesSitenyxAnalyzers>false</UsesSitenyxAnalyzers> in the csproj      -->
+  <!-- PropertyGroup. Required for the 3 self-referential projects inside the Core repo:  -->
+  <!--   - Core/Sitenyx.Analyzers/Sitenyx.Analyzers.csproj                                -->
+  <!--   - Core/Sitenyx.Analyzers.CodeFixes/Sitenyx.Analyzers.CodeFixes.csproj            -->
+  <!--   - Core/tests/Sitenyx.Analyzers.Tests/Sitenyx.Analyzers.Tests.csproj              -->
+  <!-- They ProjectReference the analyzer source directly and must not pull the NuGet.    -->
+  <!-- ================================================================================== -->
+  <ItemGroup Condition="'$(UsesSitenyxAnalyzers)' != 'false'">
+    <GlobalPackageReference Include="Sitenyx.Analyzers" PrivateAssets="all" IncludeAssets="analyzers; build" />
+  </ItemGroup>
 </Project>
