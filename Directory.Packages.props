@@ -70,6 +70,7 @@
     <!-- ============================================ -->
     <!-- Configuration & Extensions -->
     <!-- ============================================ -->
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.7" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.7" />
@@ -127,6 +128,7 @@
     <PackageVersion Include="System.Text.Json" Version="10.0.0" />
     <!-- PDF + image diffing (used by Core.Testing.Assertions.PdfAssertions) -->
     <PackageVersion Include="PdfPig" Version="0.1.14" />
+    <PackageVersion Include="QuestPDF" Version="2026.2.4" />
     <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.12" />
     <PackageVersion Include="Microsoft.Identity.Client" Version="4.84.0" />
     <!-- ============================================ -->
