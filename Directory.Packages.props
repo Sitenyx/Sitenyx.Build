@@ -172,8 +172,12 @@
     <PackageVersion Include="Sitenyx.Core" Version="1.26.152.469" />
     <PackageVersion Include="Sitenyx.Shared" Version="1.26.152.469" />
     <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.152.469" />
-    <!-- Sitenyx.Analyzers (Roslyn analyzer NuGet, pinned by the Core publish autoflow). -->
-    <PackageVersion Include="Sitenyx.Analyzers" Version="1.26.152.469" />
+    <!--
+      Sitenyx.Analyzers — pinned via GlobalPackageReference below (NOT a plain
+      PackageVersion). The autoflow in build-and-update-sdks.sh updates the
+      Version attribute inside the <GlobalPackageReference> block on each Core
+      trio publish.
+    -->
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Gate Sdks & Contracts -->
     <!-- Note: Gate Sdks/Contracts are defined in each service's local Directory.Packages.props -->
@@ -185,8 +189,10 @@
   <!--                                                                                    -->
   <!-- Without this block the analyzer NuGet stays unreferenced and SX0005/006/076/077/   -->
   <!-- 078/080/082 silently DO NOT FIRE on consumer projects. GlobalPackageReference      -->
-  <!-- (NuGet CPM, SDK 6.0+) injects the reference into every csproj under this           -->
-  <!-- Directory.Packages.props scope as if each declared a PackageReference explicitly:  -->
+  <!-- (NuGet CPM, SDK 6.0+) is the canonical CPM wiring for a package that EVERY         -->
+  <!-- project in scope should consume — it bundles the version pin AND the implicit      -->
+  <!-- PackageReference, so a plain <PackageVersion Include="Sitenyx.Analyzers"/> sibling -->
+  <!-- triggers NU1506 (duplicate PackageVersion) and must NOT coexist.                   -->
   <!--                                                                                    -->
   <!--   PrivateAssets="all" — analyzer DLLs do NOT propagate to consumers of THIS NuGet  -->
   <!--                        (each downstream consumer wires its own analyzers).         -->
@@ -202,6 +208,6 @@
   <!-- They ProjectReference the analyzer source directly and must not pull the NuGet.    -->
   <!-- ================================================================================== -->
   <ItemGroup Condition="'$(UsesSitenyxAnalyzers)' != 'false'">
-    <GlobalPackageReference Include="Sitenyx.Analyzers" PrivateAssets="all" IncludeAssets="analyzers; build" />
+    <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.152.469" PrivateAssets="all" IncludeAssets="analyzers; build" />
   </ItemGroup>
 </Project>
