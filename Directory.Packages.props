@@ -79,6 +79,11 @@
     <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.7" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.7" />
     <!-- ============================================ -->
+    <!-- AI / Microsoft Agent Framework (MAF migration) -->
+    <!-- ============================================ -->
+    <PackageVersion Include="Microsoft.Extensions.AI" Version="10.6.0" />
+    <PackageVersion Include="Microsoft.Agents.AI" Version="1.8.0" />
+    <!-- ============================================ -->
     <!-- API Documentation -->
     <!-- ============================================ -->
     <PackageVersion Include="Microsoft.OpenApi" Version="1.6.27" />
