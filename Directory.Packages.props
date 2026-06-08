@@ -176,7 +176,7 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.159.1289" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.159.1290" />
     <PackageVersion Include="Sitenyx.Shared" Version="1.26.159.1290" />
     <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.159.1290" />
     <!--
