@@ -18,7 +18,7 @@ This repository provides centralized NuGet package version management across all
       rm -rf build
       git add .
       git commit -am "Remove existing build folder to add submodule"
-      git submodule add https://github.com/reza-ariyan/Sitenyx.Build.git build
+      git submodule add https://github.com/Sitenyx/Sitenyx.Build.git build
       git add .
       git commit -am "Add build submodule"
    ```
@@ -28,7 +28,7 @@ This repository provides centralized NuGet package version management across all
 1. **Add as git submodule:**
    ```bash
    cd YourGate
-   git submodule add https://github.com/reza-ariyan/Sitenyx.Build.git build
+   git submodule add https://github.com/Sitenyx/Sitenyx.Build.git build
    git commit -m "Add Sitenyx.Build submodule"
    ```
 
@@ -41,7 +41,7 @@ This repository provides centralized NuGet package version management across all
      
      <!-- Your existing Directory.Build.props content below -->
      <PropertyGroup>
-       <TargetFramework>net9.0</TargetFramework>
+       <TargetFramework>net10.0</TargetFramework>
        <!-- ... -->
      </PropertyGroup>
    </Project>
@@ -81,10 +81,10 @@ When cloning a microservice repository:
 
 ```bash
 # Option 1: Clone with submodules
-git clone --recurse-submodules https://github.com/reza-ariyan/YourGate.git
+git clone --recurse-submodules https://github.com/Sitenyx/YourGate.git
 
 # Option 2: Initialize after cloning
-git clone https://github.com/reza-ariyan/YourGate.git
+git clone https://github.com/Sitenyx/YourGate.git
 cd YourGate
 git submodule init
 git submodule update
@@ -155,17 +155,14 @@ The shared configuration includes:
 
 ## Microservices
 
-This shared configuration is used by:
+This shared configuration is consumed by **every Sitenyx .NET backend microservice** —
+all of the Gates listed in the platform service inventory (`AGENTS.md`) — plus the shared
+`Core` framework. It is imported as the `build` submodule in each service's
+`Directory.Build.props`.
 
-- CartGate
-- IdGate (with OpenIddict 7.x override)
-- OrderGate
-- PaymentGate
-- ProductGate
-- ServiceGate
-- TenantGate
-- WebGate
-- Core
+Not consumers: the two Next.js frontends (AdminGate, ClientGate) manage their own npm
+dependencies and do not use this MSBuild package config. IdGate applies an OpenIddict 7.x
+override on top of the shared versions (see *Service-Specific Version Overrides* above).
 
 ## Troubleshooting
 
