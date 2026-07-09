@@ -86,10 +86,13 @@
     <!-- ============================================ -->
     <!-- API Documentation -->
     <!-- ============================================ -->
-    <!-- Microsoft.OpenApi is pinned via GlobalPackageReference below (NOT a plain PackageVersion):
-         it is pulled TRANSITIVELY by Swashbuckle/NSwag/AspNetCore.OpenApi, and 2.4.1 (CVE-2026-49451,
-         GHSA-v5pm-xwqc-g5wc, High) wins over a plain central pin because transitive pinning is off.
-         Forcing it as a global direct ref at the patched 2.7.5 clears the platform-wide vuln audit. -->
+    <!-- Microsoft.OpenApi: pulled TRANSITIVELY by Swashbuckle/NSwag/AspNetCore.OpenApi at 2.4.1
+         (CVE-2026-49451, GHSA-v5pm-xwqc-g5wc, High), which wins over a plain central pin because
+         transitive pinning is off. Forced to the patched 2.7.5 as a real direct PackageReference in
+         the platform-wide ItemGroup below (NOT GlobalPackageReference — that sets PrivateAssets=all,
+         which starves the Microsoft.AspNetCore.OpenApi XML-comment source-generator of the compile
+         assets it needs in SDK class-libs → CS0012/CS0246 pack failures). Clears the E3 vuln audit. -->
+    <PackageVersion Include="Microsoft.OpenApi" Version="2.7.5" />
 
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
@@ -221,10 +224,14 @@
   <ItemGroup Condition="'$(UsesSitenyxAnalyzers)' != 'false'">
     <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.190.111" PrivateAssets="all" IncludeAssets="analyzers; build" />
   </ItemGroup>
-  <!-- Microsoft.OpenApi — forced to the CVE-2026-49451-patched 2.7.5 as a global direct ref so it
-       overrides the vulnerable 2.4.1 that Swashbuckle/NSwag pull transitively (transitive pinning is
-       off; a plain PackageVersion does not win). Clears the platform-wide E3 vuln-audit CI gate. -->
+  <!-- Microsoft.OpenApi — forced to the CVE-2026-49451-patched 2.7.5 across ALL projects via a real
+       direct PackageReference (version from the central PackageVersion above). This overrides the
+       vulnerable 2.4.1 that Swashbuckle/NSwag/AspNetCore.OpenApi pull transitively (transitive pinning
+       is off; a plain PackageVersion alone does not win). A direct ref (compile+runtime assets flowing)
+       is used — NOT GlobalPackageReference, whose PrivateAssets=all breaks the AspNetCore.OpenApi
+       source-generator in SDK class-libs. This file is imported into each service's Directory.Build.props,
+       so the reference applies platform-wide. Clears the E3 vuln-audit CI gate. -->
   <ItemGroup>
-    <GlobalPackageReference Include="Microsoft.OpenApi" Version="2.7.5" />
+    <PackageReference Include="Microsoft.OpenApi" />
   </ItemGroup>
 </Project>
