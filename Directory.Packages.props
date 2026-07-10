@@ -183,9 +183,9 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.190.111" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.26.190.111" />
-    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.190.111" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.191.1179" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.26.191.1179" />
+    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.191.1179" />
     <!--
       Sitenyx.Analyzers — pinned via GlobalPackageReference below (NOT a plain
       PackageVersion). The autoflow in build-and-update-sdks.sh updates the
@@ -222,7 +222,7 @@
   <!-- They ProjectReference the analyzer source directly and must not pull the NuGet.    -->
   <!-- ================================================================================== -->
   <ItemGroup Condition="'$(UsesSitenyxAnalyzers)' != 'false'">
-    <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.190.111" PrivateAssets="all" IncludeAssets="analyzers; build" />
+    <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.191.1179" PrivateAssets="all" IncludeAssets="analyzers; build" />
   </ItemGroup>
   <!-- Microsoft.OpenApi — forced to the CVE-2026-49451-patched 2.7.5 across ALL projects via a real
        direct PackageReference (version from the central PackageVersion above). This overrides the
