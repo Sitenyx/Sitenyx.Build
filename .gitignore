@@ -13,3 +13,12 @@
 # macOS
 .DS_Store
 
+
+# --- AI-agent + CI scratch (superproject convention) ---
+.claude/*
+!.claude/skills/
+!.claude/commands/
+!.claude/agents/
+!.claude/rules/
+!.claude/hooks/
+.lighthouseci/
