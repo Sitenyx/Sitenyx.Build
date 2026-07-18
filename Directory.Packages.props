@@ -223,7 +223,7 @@
   <!-- They ProjectReference the analyzer source directly and must not pull the NuGet.    -->
   <!-- ================================================================================== -->
   <ItemGroup Condition="'$(UsesSitenyxAnalyzers)' != 'false'">
-    <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.199.1318" PrivateAssets="all" IncludeAssets="analyzers; build" />
+    <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.199.1162" PrivateAssets="all" IncludeAssets="analyzers; build" />
   </ItemGroup>
   <!-- Microsoft.OpenApi — forced to the CVE-2026-49451-patched 2.7.5 across ALL projects via a real
        direct PackageReference (version from the central PackageVersion above). This overrides the
