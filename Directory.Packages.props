@@ -82,7 +82,7 @@
     <!-- AI / Microsoft Agent Framework (MAF migration) -->
     <!-- ============================================ -->
     <PackageVersion Include="Microsoft.Extensions.AI" Version="10.8.1" />
-    <PackageVersion Include="Microsoft.Agents.AI" Version="1.14.0" />
+    <PackageVersion Include="Microsoft.Agents.AI" Version="1.15.0" />
     <!-- ============================================ -->
     <!-- API Documentation -->
     <!-- ============================================ -->
@@ -179,6 +179,12 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.6.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.6.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.6.0" />
+    <!-- HELD at 1.1.1 (test-harness only; no CVE, no runtime impact). 1.1.2 tightened the
+         CodeAnalysis.Testing FixEach locality check to reject a code fix whose edit lands outside
+         the triggering diagnostic's span — breaking SubscribeMatrix's cross-document (DI-file) and
+         file-level-marker fixes, both of which are correct in production. No clean opt-out
+         (CodeFixTestBehaviors.FixOne does not bypass the check). Revisit when the harness restores
+         support or offers a locality escape hatch. -->
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.XUnit" Version="1.1.1" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.XUnit" Version="1.1.1" />
     <!-- ============================================ -->
