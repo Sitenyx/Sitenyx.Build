@@ -23,7 +23,7 @@
     <!-- ============================================ -->
     <PackageVersion Include="Coverlet.Collector" Version="10.0.0" />
     <PackageVersion Include="FluentAssertions" Version="8.10.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.11" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
     <PackageVersion Include="Microsoft.TestPlatform.AdapterUtilities" Version="18.0.1" />
     <PackageVersion Include="Microsoft.TestPlatform.ObjectModel" Version="18.0.1" />
@@ -50,53 +50,65 @@
     <!-- ============================================ -->
     <!-- Entity Framework & Database -->
     <!-- ============================================ -->
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.11" />
     <PackageVersion Include="Npgsql" Version="10.0.3" />
     <PackageVersion Include="Npgsql.DependencyInjection" Version="10.0.3" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
     <!-- ============================================ -->
     <!-- ASP.NET Core -->
     <!-- ============================================ -->
-    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.11" />
     <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.AspNetCore.SpaProxy" Version="10.0.11" />
     <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <!-- ============================================ -->
     <!-- Configuration & Extensions -->
     <!-- ============================================ -->
-    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.11" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.11" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.11" />
     <!-- ============================================ -->
     <!-- AI / Microsoft Agent Framework (MAF migration) -->
     <!-- ============================================ -->
-    <PackageVersion Include="Microsoft.Extensions.AI" Version="10.8.1" />
-    <PackageVersion Include="Microsoft.Agents.AI" Version="1.15.0" />
+    <PackageVersion Include="Microsoft.Extensions.AI" Version="10.9.0" />
+    <PackageVersion Include="Microsoft.Agents.AI" Version="1.17.0" />
     <!-- ============================================ -->
     <!-- API Documentation -->
     <!-- ============================================ -->
     <!-- Microsoft.OpenApi: pulled TRANSITIVELY by Swashbuckle/NSwag/AspNetCore.OpenApi at 2.4.1
          (CVE-2026-49451, GHSA-v5pm-xwqc-g5wc, High), which wins over a plain central pin because
-         transitive pinning is off. Forced to the patched 2.7.5 as a real direct PackageReference in
+         transitive pinning is off. Forced to the patched 2.12.0 as a real direct PackageReference in
          the platform-wide ItemGroup below (NOT GlobalPackageReference — that sets PrivateAssets=all,
          which starves the Microsoft.AspNetCore.OpenApi XML-comment source-generator of the compile
-         assets it needs in SDK class-libs → CS0012/CS0246 pack failures). Clears the E3 vuln audit. -->
-    <PackageVersion Include="Microsoft.OpenApi" Version="2.7.5" />
+         assets it needs in SDK class-libs → CS0012/CS0246 pack failures). Clears the E3 vuln audit.
+
+         CEILED AT 2.x — do NOT take the 3.x line that Dependabot and `dotnet list package` offer
+         (3.10.0 at time of writing). Two independent blocks, both measured 2026-08-13:
+           1. Microsoft.AspNetCore.OpenApi 10.0.11 declares Microsoft.OpenApi (>= 2.7.5 && < 3.0.0) —
+              an EXCLUSIVE upper bound. Forcing 3.10.0 restores, but warns NU1608 on every project.
+           2. It then FAILS the build outright. ASP.NET Core's own XML-comment source generator emits
+              `mediaType.Example = ...` into OpenApiXmlCommentSupport.generated.cs; 3.x made
+              IOpenApiMediaType.Example read-only, so the generated file no longer compiles:
+              `error CS0200: Property or indexer 'IOpenApiMediaType.Example' cannot be assigned to`
+              (x2, Core.csproj). No source-level fix exists on our side — the broken code is generated.
+         2.12.0 is the newest release inside the framework's range and carries the CVE fix.
+         Revisit only when a Microsoft.AspNetCore.OpenApi ships whose range admits 3.x. -->
+    <PackageVersion Include="Microsoft.OpenApi" Version="2.12.0" />
 
     <PackageVersion Include="NSwag.AspNetCore" Version="14.1.0" />
     <PackageVersion Include="NSwag.MSBuild" Version="14.1.0" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.16.16" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.16.18" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.1.7" />
     <PackageVersion Include="Swashbuckle.AspNetCore.Annotations" Version="10.2.3" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.9.0" />
@@ -120,7 +132,7 @@
     <PackageVersion Include="Serilog.Expressions" Version="5.0.0" />
     <PackageVersion Include="Serilog.Formatting.Compact" Version="3.0.0" />
     <PackageVersion Include="Serilog.Sinks.Seq" Version="9.1.0" />
-    <PackageVersion Include="Datadog.Trace" Version="3.49.0" />
+    <PackageVersion Include="Datadog.Trace" Version="3.51.1" />
     <!-- ============================================ -->
     <!-- OpenTelemetry / Prometheus Metrics -->
     <!-- ============================================ -->
@@ -141,16 +153,16 @@
     <PackageVersion Include="System.Text.Json" Version="10.0.0" />
     <!-- PDF + image diffing (used by Core.Testing.Assertions.PdfAssertions) -->
     <PackageVersion Include="PdfPig" Version="0.1.14" />
-    <PackageVersion Include="QuestPDF" Version="2026.7.1" />
+    <PackageVersion Include="QuestPDF" Version="2026.7.3" />
     <PackageVersion Include="SixLabors.ImageSharp" Version="3.1.12" />
     <PackageVersion Include="Microsoft.Identity.Client" Version="4.84.0" />
     <!-- ============================================ -->
     <!-- Multi-Tenancy -->
     <!-- ============================================ -->
-    <PackageVersion Include="Finbuckle.MultiTenant" Version="10.1.2" />
-    <PackageVersion Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.2" />
-    <PackageVersion Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="10.1.2" />
-    <PackageVersion Include="Finbuckle.MultiTenant.Abstractions" Version="10.1.2" />
+    <PackageVersion Include="Finbuckle.MultiTenant" Version="10.1.3" />
+    <PackageVersion Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.3" />
+    <PackageVersion Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="10.1.3" />
+    <PackageVersion Include="Finbuckle.MultiTenant.Abstractions" Version="10.1.3" />
     <!-- ============================================ -->
     <!-- Service Discovery & Gateway -->
     <!-- ============================================ -->
@@ -169,9 +181,9 @@
     <!-- ============================================ -->
     <!-- Caching & Distributed Locking -->
     <!-- ============================================ -->
-    <PackageVersion Include="StackExchange.Redis" Version="3.0.17" />
+    <PackageVersion Include="StackExchange.Redis" Version="3.1.13" />
     <PackageVersion Include="DistributedLock.Redis" Version="1.1.1" />
-    <PackageVersion Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="10.0.11" />
     <!-- ============================================ -->
     <!-- Roslyn Analyzer (Sitenyx.Analyzers package distribution) -->
     <!-- Pinned to 4.8.0 — highest stable that loads in VS 17.8 / Rider 2024 / dotnet 8+ -->
@@ -179,14 +191,19 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.6.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.6.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.6.0" />
-    <!-- HELD at 1.1.1 (test-harness only; no CVE, no runtime impact). 1.1.2 tightened the
-         CodeAnalysis.Testing FixEach locality check to reject a code fix whose edit lands outside
-         the triggering diagnostic's span — breaking SubscribeMatrix's cross-document (DI-file) and
-         file-level-marker fixes, both of which are correct in production. No clean opt-out
-         (CodeFixTestBehaviors.FixOne does not bypass the check). Revisit when the harness restores
-         support or offers a locality escape hatch. -->
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.XUnit" Version="1.1.1" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.XUnit" Version="1.1.1" />
+    <!-- UNHELD 2026-08-13: now on 1.1.2 (test-harness only; no CVE, no runtime impact).
+         The 1.1.1 hold existed because 1.1.2 tightened the CodeAnalysis.Testing FixEach locality
+         check to reject a code fix whose edit lands outside the triggering diagnostic's span,
+         which failed SubscribeMatrix's cross-document (DI-file) and file-level-marker fixes
+         (`System.InvalidOperationException : Code fix is attempting to provide a fix for a
+         non-local analyzer diagnostic`, 2 of 87 tests). The note that there was no clean opt-out
+         was wrong: 1.1.2 shipped the assertion AND its escape hatch together, and
+         CodeFixTestBehaviors.SkipLocalDiagnosticCheck (new in 1.1.2, absent from 1.1.1) is it.
+         Both tests in Core's tests/Sitenyx.Analyzers.Tests/SubscribeMatrixCodeFixProviderTests.cs
+         now declare it — SX0005 is a compilation-end diagnostic, so non-local is correct and
+         intended, not a defect being papered over. Verified 87/87 green. -->
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.XUnit" Version="1.1.2" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.XUnit" Version="1.1.2" />
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
@@ -245,7 +262,7 @@
   <ItemGroup Condition="'$(UsesSitenyxAnalyzers)' != 'false'">
     <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.224.1028" PrivateAssets="all" IncludeAssets="analyzers; build" />
   </ItemGroup>
-  <!-- Microsoft.OpenApi — forced to the CVE-2026-49451-patched 2.7.5 across ALL projects via a real
+  <!-- Microsoft.OpenApi — forced to the CVE-2026-49451-patched 2.12.0 across ALL projects via a real
        direct PackageReference (version from the central PackageVersion above). This overrides the
        vulnerable 2.4.1 that Swashbuckle/NSwag/AspNetCore.OpenApi pull transitively (transitive pinning
        is off; a plain PackageVersion alone does not win). A direct ref (compile+runtime assets flowing)
