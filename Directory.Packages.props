@@ -240,5 +240,25 @@
        so the reference applies platform-wide. Clears the E3 vuln-audit CI gate. -->
   <ItemGroup>
     <PackageReference Include="Microsoft.OpenApi" />
+    <!-- ============================================ -->
+    <!-- Security overrides -->
+    <!-- ============================================ -->
+    <!-- GHSA-q939-rpr3-3284 (High, published 2026-08-12 15:19Z): SSH.NET 2025.1.0 ScpClient
+         recursive download allows arbitrary file write via server-controlled SCP filenames.
+         It reaches every service TRANSITIVELY and TEST-ONLY:
+         Sitenyx.Core.Testing -> Testcontainers(.PostgreSql/.Redis) 4.13.0 -> SSH.NET 2025.1.0.
+         No shipped service carries it in a runtime graph, but the CI vulnerability audit walks
+         test projects, so on 2026-08-12 it turned the WHOLE FLEET's Deploy red at once --
+         10 of 10 services in the first deploy wave failed inside 13 seconds of each other.
+         Testcontainers 4.13.0 is the newest release and still resolves the vulnerable version,
+         so there is no upstream bump to take yet.
+         This version alone is NOT sufficient: CentralPackageTransitivePinningEnabled is off
+         platform-wide, so it binds only through a real direct reference. Each Core.Testing
+         consumer therefore carries a paired versionless <PackageReference Include="SSH.NET" />,
+         and NuGet's highest-wins resolution lifts Testcontainers' demand to the patched
+         version. Remove BOTH halves once Testcontainers' own floor passes SSH.NET 2026.0.0. -->
+    <PackageVersion Include="SSH.NET" Version="2026.0.0" />
+
+
   </ItemGroup>
 </Project>
