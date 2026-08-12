@@ -7,9 +7,18 @@
 # Reviewers list deliberately scoped to the project owner so PRs land in
 # his inbox; expand as the team grows.
 version: 2
+
+registries:
+  github-nuget:
+    type: nuget-feed
+    url: https://nuget.pkg.github.com/sitenyx/index.json
+    token: ${{secrets.NUGET_TOKEN}}
+
 updates:
   - package-ecosystem: "nuget"
     directory: "/"
+    registries:
+      - github-nuget
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
