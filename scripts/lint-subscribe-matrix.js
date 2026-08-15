@@ -103,6 +103,11 @@ const path = require("path");
 //   → SubscribeToCommonEvents(bus)
 const COMMON_EVENTS = new Set([
   "InvalidateTenantCacheEvent",
+  // GDPR Art. 17 erasure. The handler lives in Core
+  // (Core.Gdpr.ErasureRequestedEventHandler) and SubscribeToCommonEvents binds
+  // the queue in all 47 Gates — a per-Gate Subscribe would be redundant, and
+  // telling authors to add one would be actively wrong.
+  "ErasureRequestedEvent",
 ]);
 
 // File-level exemption marker. A handler file with this comment anywhere
