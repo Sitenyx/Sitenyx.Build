@@ -207,9 +207,9 @@
     <!-- ============================================ -->
     <!-- Sitenyx Internal - Core & Contracts -->
     <!-- ============================================ -->
-    <PackageVersion Include="Sitenyx.Core" Version="1.26.228.1020" />
-    <PackageVersion Include="Sitenyx.Shared" Version="1.26.228.1020" />
-    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.228.1020" />
+    <PackageVersion Include="Sitenyx.Core" Version="1.26.228.1404" />
+    <PackageVersion Include="Sitenyx.Shared" Version="1.26.228.1404" />
+    <PackageVersion Include="Sitenyx.Core.Testing" Version="1.26.228.1404" />
     <!-- Security override. GHSA-q939-rpr3-3284 (High, 2026-08-12): SSH.NET 2025.1.0
          ScpClient recursive download allows arbitrary file write via server-controlled SCP
          filenames. It reaches every service transitively and test-only, through
@@ -260,7 +260,7 @@
   <!-- They ProjectReference the analyzer source directly and must not pull the NuGet.    -->
   <!-- ================================================================================== -->
   <ItemGroup Condition="'$(UsesSitenyxAnalyzers)' != 'false'">
-    <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.228.1020" PrivateAssets="all" IncludeAssets="analyzers; build" />
+    <GlobalPackageReference Include="Sitenyx.Analyzers" Version="1.26.228.1404" PrivateAssets="all" IncludeAssets="analyzers; build" />
   </ItemGroup>
   <!-- Microsoft.OpenApi — forced to the CVE-2026-49451-patched 2.12.0 across ALL projects via a real
        direct PackageReference (version from the central PackageVersion above). This overrides the
