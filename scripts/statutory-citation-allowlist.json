@@ -11,7 +11,7 @@
         "30", "31", "32", "33", "34", "35", "36", "37"
       ],
       "explicitlyInvalid": {
-        "11": "Ophævet (repealed) in the 2022 lov. Use §4 + §10 for digital bilag retention.",
+        "11": "Oph\u00e6vet (repealed) in the 2022 lov. The 5-year retention duty over regnskabsmateriale is \u00a7 12 \u2014 NOT \u00a7 10. This entry used to say \"Use \u00a74 + \u00a710\", which sent every developer who tripped this lint straight to the repealed 2006 numbering; danskelove.dk still serves that old text, so a casual check confirms the wrong answer. Corrected 2026-08-27 after \u00a7 10 was found live across 68 marketing and GDPR-consent strings.",
         "99": "Hallucination — § does not exist."
       },
       "diacriticVariants": ["Bogforingsloven"]
