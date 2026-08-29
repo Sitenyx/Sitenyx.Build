@@ -5,21 +5,67 @@
     "Bogføringsloven": {
       "fullName": "Bookkeeping Act (LBK 2022-05-19)",
       "validParagraphs": [
-        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "12", "13", "14", "15", "16", "17", "18", "19", "20",
-        "21", "22", "23", "24", "25", "26", "27", "28", "29",
-        "30", "31", "32", "33", "34", "35", "36", "37"
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
       ],
       "explicitlyInvalid": {
-        "11": "Oph\u00e6vet (repealed) in the 2022 lov. The 5-year retention duty over regnskabsmateriale is \u00a7 12 \u2014 NOT \u00a7 10. This entry used to say \"Use \u00a74 + \u00a710\", which sent every developer who tripped this lint straight to the repealed 2006 numbering; danskelove.dk still serves that old text, so a casual check confirms the wrong answer. Corrected 2026-08-27 after \u00a7 10 was found live across 68 marketing and GDPR-consent strings.",
+        "11": "§11 in the 2022 lov is afstemninger (reconciliations) and is NOT repealed — this entry said it was, and told every developer who tripped the lint to \"Use §4 + §10\", which is the REPEALED pre-2022 numbering the lint exists to stop. danskelove.dk still serves that old text, so a casual check confirms the wrong answer; read retsinformation.dk's PDF of LOV nr 700 af 24/05/2022 instead. It stays invalid here because every historical citation of §11 in this codebase meant the PRE-2022 §11 (digital bilag / SHA-256 / retention), and a string-matching lint cannot tell that from an honest citation of afstemninger. Correct targets: retention §12 · integrity §13 · digital-system requirements §15 · transaktionsspor §8 · kontrolspor §9. Corrected 2026-08-27.",
         "99": "Hallucination — § does not exist."
       },
-      "diacriticVariants": ["Bogforingsloven"]
+      "diacriticVariants": [
+        "Bogforingsloven"
+      ]
     },
     "Selskabsloven": {
       "fullName": "Companies Act (LBK 2024-03-12)",
       "validParagraphs": "1-374",
-      "commonlyCited": ["119", "184", "185", "210", "225", "245", "246", "247", "248", "249"],
+      "commonlyCited": [
+        "119",
+        "184",
+        "185",
+        "210",
+        "225",
+        "245",
+        "246",
+        "247",
+        "248",
+        "249"
+      ],
       "diacriticVariants": []
     },
     "Årsregnskabsloven": {
@@ -29,7 +75,10 @@
       "explicitlyInvalid": {
         "400": "Hallucination — § does not exist."
       },
-      "diacriticVariants": ["Aarsregnskabsloven", "Arsregnskabsloven"]
+      "diacriticVariants": [
+        "Aarsregnskabsloven",
+        "Arsregnskabsloven"
+      ]
     },
     "Hvidvaskloven": {
       "fullName": "Anti-Money-Laundering Act (LBK 2023-09-26)",
@@ -39,7 +88,14 @@
     "Renteloven": {
       "fullName": "Late Payment Interest Act (LBK 2014-08-22)",
       "validParagraphs": "1-12",
-      "commonlyCited": ["3", "3a", "5", "9a", "9b", "10"],
+      "commonlyCited": [
+        "3",
+        "3a",
+        "5",
+        "9a",
+        "9b",
+        "10"
+      ],
       "diacriticVariants": []
     },
     "Forbrugeraftaleloven": {
@@ -54,18 +110,39 @@
         "99": "Hallucination — Forældelsesloven highest § is 30. §99 does not exist.",
         "210": "Hallucination — §210 lives in Selskabsloven (kapitalejerlån), not Forældelsesloven."
       },
-      "diacriticVariants": ["Foraeldelsesloven"]
+      "diacriticVariants": [
+        "Foraeldelsesloven"
+      ]
     },
     "Ligningsloven": {
       "fullName": "Tax Assessment Act",
       "validParagraphs": "1-90",
-      "commonlyCited": ["2", "8", "9A", "9B", "9C", "16"],
+      "commonlyCited": [
+        "2",
+        "8",
+        "9A",
+        "9B",
+        "9C",
+        "16"
+      ],
       "diacriticVariants": []
     },
     "Selskabsskatteloven": {
       "fullName": "Corporate Income Tax Act (LBK 2024-01-15)",
       "validParagraphs": "1-43",
-      "commonlyCited": ["1", "12", "13", "17", "29", "29A", "29B", "30", "31", "31A", "31C"],
+      "commonlyCited": [
+        "1",
+        "12",
+        "13",
+        "17",
+        "29",
+        "29A",
+        "29B",
+        "30",
+        "31",
+        "31A",
+        "31C"
+      ],
       "explicitlyInvalid": {
         "50C": "Hallucination — § does not exist (Selskabsskatteloven highest § is 43).",
         "100": "Hallucination — § does not exist."
@@ -113,13 +190,20 @@
     "Lønsumsafgiftsloven": {
       "fullName": "Payroll Tax Act (LBK 2018-04-12)",
       "validParagraphs": "1-22",
-      "alternateForms": ["Lønsumsafgiftslovens"],
-      "diacriticVariants": ["Lonsumsafgiftsloven", "Lonsumsafgiftslovens"]
+      "alternateForms": [
+        "Lønsumsafgiftslovens"
+      ],
+      "diacriticVariants": [
+        "Lonsumsafgiftsloven",
+        "Lonsumsafgiftslovens"
+      ]
     },
     "Arbejdsmarkedsbidragsloven": {
       "fullName": "Labour Market Contribution Act (LBK 2014-04-29)",
       "validParagraphs": "1-22",
-      "alternateForms": ["Arbejdsmarkedsbidragslovens"],
+      "alternateForms": [
+        "Arbejdsmarkedsbidragslovens"
+      ],
       "diacriticVariants": []
     }
   },
