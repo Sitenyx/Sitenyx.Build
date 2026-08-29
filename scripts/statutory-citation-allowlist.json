@@ -219,7 +219,6 @@
     }
   },
   "knownHallucinations": [
-    "Bogføringsloven §11",
     "Bogføringsloven §99",
     "Forældelsesloven §99",
     "Forældelsesloven §210",
@@ -254,5 +253,8 @@
       "**/scripts/statutory-citation-allowlist.json"
     ]
   },
-  "historicalCommentMarker": "// historical:"
+  "historicalCommentMarker": "// historical:",
+  "misuseProne": {
+    "Bogføringsloven §11": "§11 is afstemninger (reconciliations before a lovpligtig indberetning) and is a VALID citation — this list previously called it repealed and told you to \"Use §4 + §10\", which is the repealed pre-2022 numbering. It warns because every citation of §11 written in this estate before 2026-08-27 meant the PRE-2022 §11 (digital bilag / SHA-256 / retention), and a string match cannot tell those apart. Ask what the sentence claims: reconciliation before a filing deadline → §11 is right, keep it. Retention → §12. Integrity → §13. Digital-system requirements → §15. Transaktionsspor → §8. Kontrolspor → §9."
+  }
 }

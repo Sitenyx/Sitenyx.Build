@@ -128,6 +128,18 @@ function loadAllowlist(allowlistPath = ALLOWLIST_PATH) {
     };
   }
 
+  // Citations that EXIST and are sometimes right, but whose historical uses in
+  // this estate were overwhelmingly the drifted meaning. A string-matching lint
+  // cannot tell an honest use from a drifted one, so these WARN with the
+  // question to ask, rather than blocking correct law. Mirrors Core's
+  // DanishLegalCitations.Wrong.MisusePronePatterns.
+  const misuseProne = new Map(
+    Object.entries(raw.misuseProne || {}).map(([k, v]) => [
+      normaliseWhitespace(k).toLowerCase(),
+      v,
+    ]),
+  );
+
   const knownHallucinations = new Set(
     (raw.knownHallucinations || []).map(normaliseWhitespace).map((s) =>
       s.toLowerCase()
@@ -138,6 +150,7 @@ function loadAllowlist(allowlistPath = ALLOWLIST_PATH) {
     statutes,
     rejected,
     knownHallucinations,
+    misuseProne,
     scanGlobs: raw.scanGlobs || { include: [], exclude: [] },
     historicalCommentMarker: raw.historicalCommentMarker || "// historical:",
   };
@@ -332,13 +345,26 @@ function validateMatch(allowlist, statuteRaw, paragraph, stkSuffix) {
 
   // 3. Known hallucination — even if §-number is in range, this exact
   //    "Statute §N" is forbidden. Hallucinations take precedence over
-  //    range-checks (e.g. Bogføringsloven §11 is technically in range
-  //    1-37 but is Ophævet).
+  //    range-checks (e.g. Forældelsesloven §210 is a real §-number, but it
+  //    lives in Selskabsloven, not there).
+  //
+  //    This comment used to cite "Bogføringsloven §11 … is Ophævet" as the
+  //    worked example. It is not: §11 of LOV nr 700 af 24/05/2022 is
+  //    afstemninger. It has moved to misuseProne below — see that entry.
   const hallucinationKey = `${canonical} §${paragraph}`.toLowerCase();
   if (allowlist.knownHallucinations.has(hallucinationKey)) {
     return {
       severity: "error",
       message: `${canonical} §${paragraph} is a known hallucination — invented citation never valid.`,
+    };
+  }
+
+  // 3b. Misuse-prone: real provision, historically drifted meaning. WARNS.
+  const misuseReason = allowlist.misuseProne.get(hallucinationKey);
+  if (misuseReason) {
+    return {
+      severity: "warning",
+      message: `${canonical} §${paragraph}: ${misuseReason}`,
     };
   }
 

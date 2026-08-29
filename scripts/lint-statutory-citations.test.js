@@ -307,7 +307,8 @@ test("bonus: scan respects messages/{locale}/index.json bundles", () => {
     tmp,
     "messages/da/index.json",
     JSON.stringify({
-      ok: "Per Bogføringsloven §10 skal materiale opbevares 5 år.",
+      // §12 is the retention duty; §10 is the currency of registrations.
+      ok: "Per Bogføringsloven §12 skal materiale opbevares 5 år.",
       bad: "Per Bogføringsloven §99 — invented.",
     })
   );
@@ -319,6 +320,62 @@ test("bonus: scan respects messages/{locale}/index.json bundles", () => {
   assert(
     findings[0]?.match.includes("§99"),
     `error should be on §99: '${findings[0]?.match}'`
+  );
+});
+
+test("misuse-prone citations WARN rather than block", () => {
+  // §11 sat in knownHallucinations as a hard error on the false claim that it
+  // is repealed, with the remedy "Use §4 + §10" — which is the repealed
+  // pre-2022 numbering this lint exists to stop. §11 of LOV nr 700 af
+  // 24/05/2022 is afstemninger, and ComplianceGate's bank-reconciliation gap
+  // mapper cites it correctly, so a hard error blocked correct law.
+  //
+  // The risk it guarded is still real: every §11 written here before
+  // 2026-08-27 meant the PRE-2022 §11, and a string match cannot tell those
+  // apart. So it warns, and the message carries the question to ask.
+  const tmp = makeTmpDir();
+  const file = writeFixture(
+    tmp,
+    "Reconcile.cs",
+    'var note = "Bogføringsloven §11 kræver de nødvendige afstemninger.";\n'
+  );
+  const findings = lint.scanFile(file, regex, allowlist);
+  assert(
+    findings.length === 1,
+    `expected 1 finding for §11; got: ${JSON.stringify(findings)}`
+  );
+  assert(
+    findings[0]?.severity === "warning",
+    `§11 must WARN, not error — a hard error blocks a correct citation of ` +
+      `afstemninger. got severity: '${findings[0]?.severity}'`
+  );
+  assert(
+    /afstemninger/i.test(findings[0]?.message ?? ""),
+    `the warning must say what §11 actually is, so the reader can decide; ` +
+      `got: '${findings[0]?.message}'`
+  );
+});
+
+test("a warning does not fail the run; an error does", () => {
+  // The whole point of the tier: §11 alone must exit 0, so a correct citation
+  // cannot break a build, while a real hallucination still must not ship.
+  const tmp = makeTmpDir();
+  writeFixture(tmp, "Warn.cs", 'var a = "Bogføringsloven §11 afstemninger";\n');
+  const warnOnly = lint.scanFile(
+    path.join(tmp, "Warn.cs"),
+    regex,
+    allowlist
+  );
+  assert(
+    warnOnly.every((f) => f.severity === "warning"),
+    `§11 alone must produce no errors; got: ${JSON.stringify(warnOnly)}`
+  );
+
+  writeFixture(tmp, "Err.cs", 'var b = "Bogføringsloven §99 invented";\n');
+  const errFindings = lint.scanFile(path.join(tmp, "Err.cs"), regex, allowlist);
+  assert(
+    errFindings.some((f) => f.severity === "error"),
+    `a genuine hallucination must still ERROR; got: ${JSON.stringify(errFindings)}`
   );
 });
 
