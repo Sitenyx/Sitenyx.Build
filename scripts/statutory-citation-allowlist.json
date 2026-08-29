@@ -209,13 +209,25 @@
   },
   "rejectedStatutes": {
     "Persondataloven": {
-      "reason": "Repealed 2018-05-25 by GDPR (forordning 2016/679) + Databeskyttelsesloven. Citing Persondataloven in new code is always wrong — replace with 'GDPR Art. N' or 'Databeskyttelsesloven §N'.",
+      "reason": "Repealed 2018-05-25 by GDPR (forordning 2016/679) + Databeskyttelsesloven. Citing it in new code is always wrong — replace with 'GDPR Art. N' or 'Databeskyttelsesloven §N'. In THIS estate its '§22' was always GDPR art. 22 (automated individual decisions) transposed onto the dead act, and its '§5' was art. 5(1)(e) storage limitation.",
       "replacement": "GDPR + Databeskyttelsesloven"
     },
     "Bogforingsloven": {
       "reason": "ASCII fallback for Bogføringsloven detected without diacritic. Use the canonical Danish form 'Bogføringsloven' (with ø).",
       "replacement": "Bogføringsloven",
       "kind": "diacritic-typo"
+    },
+    "Persondatalov": {
+      "reason": "Repealed 2018-05-25 by GDPR (forordning 2016/679) + Databeskyttelsesloven. Citing it in new code is always wrong — replace with 'GDPR Art. N' or 'Databeskyttelsesloven §N'. In THIS estate its '§22' was always GDPR art. 22 (automated individual decisions) transposed onto the dead act, and its '§5' was art. 5(1)(e) storage limitation.",
+      "replacement": "GDPR + Databeskyttelsesloven"
+    },
+    "Persondatalovens": {
+      "reason": "Repealed 2018-05-25 by GDPR (forordning 2016/679) + Databeskyttelsesloven. Citing it in new code is always wrong — replace with 'GDPR Art. N' or 'Databeskyttelsesloven §N'. In THIS estate its '§22' was always GDPR art. 22 (automated individual decisions) transposed onto the dead act, and its '§5' was art. 5(1)(e) storage limitation.",
+      "replacement": "GDPR + Databeskyttelsesloven"
+    },
+    "Persondatalovs": {
+      "reason": "Repealed 2018-05-25 by GDPR (forordning 2016/679) + Databeskyttelsesloven. Citing it in new code is always wrong — replace with 'GDPR Art. N' or 'Databeskyttelsesloven §N'. In THIS estate its '§22' was always GDPR art. 22 (automated individual decisions) transposed onto the dead act, and its '§5' was art. 5(1)(e) storage limitation.",
+      "replacement": "GDPR + Databeskyttelsesloven"
     }
   },
   "knownHallucinations": [
