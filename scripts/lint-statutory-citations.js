@@ -413,6 +413,23 @@ function describeRange(rangeDescriptor) {
 // Historical-comment carve-out
 // ─────────────────────────────────────────────────────────────────────────
 
+/**
+ * True when the line is a COMMENT that quotes a statute citation rather than
+ * asserting it — the use/mention distinction. Only comment lines qualify, so
+ * these are quotation marks and never string delimiters in live code.
+ */
+function isRetractedMention(line) {
+  const trimmed = line.trimStart();
+  const isComment =
+    trimmed.startsWith("//") ||
+    trimmed.startsWith("*") ||
+    trimmed.startsWith("/*") ||
+    trimmed.startsWith("#");
+  if (!isComment) return false;
+  // A quoted span containing a §-citation or a rejected statute name.
+  return /"[^"]*(?:§\s*\d|[A-ZÆØÅa-zæøå]+lov(?:en|ens)?)[^"]*"/.test(line);
+}
+
 function isHistoricalContext(line, marker) {
   return line.includes(marker);
 }
@@ -437,6 +454,19 @@ function scanFile(filePath, regex, allowlist) {
   for (let lineNum = 0; lineNum < lines.length; lineNum++) {
     const line = lines[lineNum];
     if (isHistoricalContext(line, allowlist.historicalCommentMarker)) {
+      continue;
+    }
+    // USE versus MENTION. A comment that names a citation IN ORDER TO DENY IT
+    // is the record of a fix, not a claim — and it has to be allowed to quote
+    // what it denies, or the next reader loses the reason. The `// historical:`
+    // marker above covers this only when someone remembers to write it; this
+    // covers the shape the corrections actually take:
+    //
+    //   /// This said "Persondatalov §22 in DK"; Persondataloven was REPEALED…
+    //
+    // The citation sits inside quotation marks on a COMMENT line, which is
+    // never how an assertion is written. Asserting it would need no quotes.
+    if (isRetractedMention(line)) {
       continue;
     }
     let match;

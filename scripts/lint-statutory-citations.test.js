@@ -379,6 +379,44 @@ test("a warning does not fail the run; an error does", () => {
   );
 });
 
+test("a quoted retraction is exempt; a bare assertion and a live string are not", () => {
+  // Use versus mention. A correction has to be able to quote the citation it
+  // is removing, or the next reader loses the reason — but the exemption must
+  // not become a way to smuggle a claim past the lint. Three shapes, one file:
+  //   line 2  bare assertion in a comment      -> ERROR
+  //   line 5  quoted retraction in a comment   -> exempt
+  //   line 7  live string literal (has quotes) -> ERROR, quotes notwithstanding
+  const tmp = makeTmpDir();
+  const file = writeFixture(
+    tmp,
+    "Probe.cs",
+    "// header\n" +
+      "// Retained per Persondatalov §22.\n" +
+      "public class Probe {\n" +
+      "    /// This said \"Persondatalov §22\"; that act was repealed in 2018.\n" +
+      "    public const string Bad = \"Retained per Persondatalov §22.\";\n" +
+      "}\n"
+  );
+  const findings = lint.scanFile(file, regex, allowlist);
+  const errorLines = findings.filter((f) => f.severity === "error").map((f) => f.line).sort();
+  assert(
+    errorLines.length === 2,
+    `expected exactly 2 errors (bare comment + live string), got ${JSON.stringify(findings)}`
+  );
+  assert(
+    errorLines.includes(2),
+    `the bare comment assertion on line 2 must ERROR — a comment is not a licence to state a repealed act as current. got lines ${errorLines}`
+  );
+  assert(
+    errorLines.includes(5),
+    `the live string on line 5 must ERROR: quotes there are C# delimiters, not quotation marks, so the use/mention exemption must not reach it. got lines ${errorLines}`
+  );
+  assert(
+    !errorLines.includes(4),
+    `the quoted retraction on line 4 must be exempt, or corrections cannot name what they correct. got lines ${errorLines}`
+  );
+});
+
 // ─────────────────────────────────────────────────────────────────────────
 // Summary
 // ─────────────────────────────────────────────────────────────────────────
