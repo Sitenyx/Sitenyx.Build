@@ -105,9 +105,9 @@
     },
     "Forældelsesloven": {
       "fullName": "Limitation Act (LBK 2015-12-22)",
-      "validParagraphs": "1-29",
+      "validParagraphs": "1-31",
       "explicitlyInvalid": {
-        "99": "Hallucination — Forældelsesloven highest § is 30. §99 does not exist.",
+        "99": "Hallucination — Forældelsesloven ends at §31 (LBK nr 1238 af 09/11/2015, 'lov om forældelse af fordringer'; §30 is the transitional rule and §31 the Færøerne/Grønland clause). §99 does not exist. NOTE: this entry previously said 'highest § is 30' while validParagraphs stopped at 29 — the reason text and the range disagreed with each other AND both were wrong, so a correct citation of §30 or §31 would have been rejected. Verified against the act's own PDF 2026-08-30.",
         "210": "Hallucination — §210 lives in Selskabsloven (kapitalejerlån), not Forældelsesloven."
       },
       "diacriticVariants": [
