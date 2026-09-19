@@ -172,8 +172,8 @@
     <!-- ============================================ -->
     <PackageVersion Include="Consul" Version="1.8.0" />
     <PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0" />
-    <PackageVersion Include="Steeltoe.Discovery.Consul" Version="4.2.0" />
-    <PackageVersion Include="Steeltoe.Discovery.HttpClients" Version="4.2.0" />
+    <PackageVersion Include="Steeltoe.Discovery.Consul" Version="4.3.0" />
+    <PackageVersion Include="Steeltoe.Discovery.HttpClients" Version="4.3.0" />
     <!-- ============================================ -->
     <!-- Message Bus (Rebus) -->
     <!-- ============================================ -->
