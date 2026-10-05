@@ -16,14 +16,11 @@ This repository provides centralized NuGet package version management across all
       rm -rf .git/modules/build
       git rm -r --cached build
       rm -rf build
-      git add .
-      git commit -am "Remove existing build folder to add submodule"
+      git commit -m "Remove existing build folder to add submodule"
       git submodule add https://github.com/Sitenyx/Sitenyx.Build.git build
-      git add .
-      git commit -am "Add build submodule"
+      git add .gitmodules build
+      git commit -m "Add build submodule"
    ```
-
-
 
 1. **Add as git submodule:**
    ```bash
@@ -69,7 +66,7 @@ To get the latest shared package versions:
 ```bash
 # Pull latest shared versions
 cd build
-git pull origin main
+git pull origin master
 cd ..
 git add build
 git commit -m "Update Sitenyx.Build to latest"
@@ -101,26 +98,14 @@ Ensure your CI/CD pipeline initializes submodules:
     submodules: true
 ```
 
-### GitLab CI
-```yaml
-variables:
-  GIT_SUBMODULE_STRATEGY: recursive
-```
-
-### Azure DevOps
-```yaml
-- checkout: self
-  submodules: true
-```
-
 ## Version Management
 
 ### Updating Shared Package Versions
 
 1. Clone this repository
 2. Update version in `Directory.Packages.props`
-3. Commit and push to main branch
-4. Each microservice can then update its submodule reference
+3. Commit and push to `master`
+4. Each Gate can then bump its `build` submodule pin — committing and pushing that bump deploys the Gate to production: ask first, waves of ≤4–5 (Sitenyx `CLAUDE.md`)
 
 ### Service-Specific Version Overrides
 
@@ -184,12 +169,7 @@ dotnet build
 
 ## Contributing
 
-When adding or updating packages:
-
-1. Ensure the version is compatible across all microservices
-2. Update this README if adding a new category
-3. Test the change in at least one microservice before committing
-4. Use semantic versioning principles
+Keep a new or bumped version compatible across every Gate and test it in at least one Gate before committing.
 
 ## License
 
