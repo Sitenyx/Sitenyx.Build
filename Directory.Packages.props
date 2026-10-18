@@ -155,6 +155,8 @@
     <PackageVersion Include="System.Formats.Asn1" Version="10.0.13" />
     <PackageVersion Include="System.Linq.Async" Version="7.0.1" />
     <PackageVersion Include="System.Text.Json" Version="10.0.13" />
+    <PackageVersion Include="System.Security.Cryptography.Xml" Version="10.0.13" />
+    <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
     <!-- PDF + image diffing (used by Core.Testing.Assertions.PdfAssertions) -->
     <PackageVersion Include="PdfPig" Version="0.1.16" />
     <PackageVersion Include="QuestPDF" Version="2026.8.0" />
@@ -284,5 +286,18 @@
        so the reference applies platform-wide. Clears the E3 vuln-audit CI gate. -->
   <ItemGroup>
     <PackageReference Include="Microsoft.OpenApi" />
+  </ItemGroup>
+  <!-- System.Security.Cryptography.Xml + .Pkcs — forced to 10.0.13 across ALL projects the same way, as
+       real direct PackageReferences (versions from the central PackageVersions above). Both are pulled
+       TRANSITIVELY at 10.0.12: Sitenyx.Core 1.26.281.669 was built against the 10.0.12 servicing band, and
+       its nuspec's dependency floors are what NuGet resolves while transitive pinning is off, so the band
+       bump to 10.0.13 in this file alone did not reach them (CashGate run 39162090552, 2026-10-18).
+       10.0.0-10.0.12 carry GHSA-7hqp-7c5m-4vq6, GHSA-c399-9853-6jmj, GHSA-r955-8q5j-3h83 (Xml, High) and
+       GHSA-846f-f764-76mx (High), GHSA-2fmv-rv2c-59x7 (Moderate) (Pkcs), which fail the E3 vuln-audit
+       CI gate in every Gate. Remove this ItemGroup and the two PackageVersions once a Sitenyx.Core built
+       against 10.0.13 or later is pinned fleet-wide. -->
+  <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.Xml" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
   </ItemGroup>
 </Project>
