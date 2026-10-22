@@ -1,26 +1,10 @@
 # Sitenyx.Build
 
-Shared build configuration and package version management for Sitenyx microservices.
-
-## Overview
-
-This repository provides centralized NuGet package version management across all Sitenyx microservices using MSBuild's Central Package Management (CPM) feature.
+Shared build configuration: NuGet versions for every Sitenyx microservice via MSBuild Central Package Management (CPM).
 
 ## Usage
 
 ### Adding to a New Microservice
-
-1. **Remove git submodule:**
-   ```bash   
-      git submodule deinit -f build
-      rm -rf .git/modules/build
-      git rm -r --cached build
-      rm -rf build
-      git commit -m "Remove existing build folder to add submodule"
-      git submodule add https://github.com/Sitenyx/Sitenyx.Build.git build
-      git add .gitmodules build
-      git commit -m "Add build submodule"
-   ```
 
 1. **Add as git submodule:**
    ```bash
@@ -72,6 +56,8 @@ git add build
 git commit -m "Update Sitenyx.Build to latest"
 ```
 
+Pushing this commit deploys the Gate — see Version Management.
+
 ### Cloning a Repository with Submodules
 
 When cloning a microservice repository:
@@ -89,14 +75,7 @@ git submodule update
 
 ## CI/CD Setup
 
-Ensure your CI/CD pipeline initializes submodules:
-
-### GitHub Actions
-```yaml
-- uses: actions/checkout@v4
-  with:
-    submodules: true
-```
+Gates call `sitenyx-infra/.github/workflows/{test,deploy}-dotnet.yml`, which check out submodules recursively; nothing to add per Gate.
 
 ## Version Management
 
@@ -105,7 +84,10 @@ Ensure your CI/CD pipeline initializes submodules:
 1. Clone this repository
 2. Update version in `Directory.Packages.props`
 3. Commit and push to `master`
-4. Each Gate can then bump its `build` submodule pin — committing and pushing that bump deploys the Gate to production: ask first, waves of ≤4–5 (Sitenyx `CLAUDE.md`)
+4. Each Gate can then bump its `build` submodule pin — committing and pushing that bump deploys the Gate to production: ask first; pacing per Sitenyx `CLAUDE.md` §5
+
+- A Core publish (`Core/build-and-update-sdks.sh --publish-core`, skill `sitenyx-core-publish`) bumps the four `Sitenyx.*` pins (below), then commits and pushes this repo's `master`; it aborts if this repo is dirty, off `master` or diverged.
+- `scripts/` = CI audit lints that sitenyx-infra `test-dotnet.yml` runs from `build/scripts/`; a Gate gets a new one only via its `build` pin.
 
 ### Service-Specific Version Overrides
 
@@ -115,7 +97,7 @@ If a service needs a different version of a shared package, override it in that 
 <Project>
   <ItemGroup>
     <!-- Override shared version -->
-    <PackageVersion Include="OpenIddict.Core" Version="7.1.0" Update="true" />
+    <PackageVersion Update="OpenIddict.Core" Version="<version>" />
   </ItemGroup>
 </Project>
 ```
@@ -130,24 +112,24 @@ The shared configuration includes:
 - **Entity Framework** - EF Core, Npgsql provider
 - **ASP.NET Core** - Web framework packages
 - **API Documentation** - Swagger, NSwag, Scalar
-- **Authentication** - OpenIddict (v5.8.0 default, v7.x for IdGate)
+- **Authentication** - OpenIddict
 - **Logging** - Serilog, Datadog
 - **Multi-Tenancy** - Finbuckle.MultiTenant
 - **Service Discovery** - Consul, Steeltoe, YARP
 - **Message Bus** - Rebus
 - **Caching** - Redis, StackExchange.Redis
-- **Sitenyx Internal** - Core libraries and Gate SDKs/Contracts
+- **Sitenyx Internal** - `Sitenyx.Core`, `Sitenyx.Shared`, `Sitenyx.Core.Testing`, `Sitenyx.Analyzers`; Gate SDK pins stay in each Gate's own `Directory.Packages.props`
 
 ## Microservices
 
 This shared configuration is consumed by **every Sitenyx .NET backend microservice** —
 all of the Gates listed in the platform service inventory (`AGENTS.md`) — plus the shared
 `Core` framework. It is imported as the `build` submodule in each service's
-`Directory.Build.props`.
+`Directory.Build.props`. Exceptions: AgentGate (no `build/` yet — local pins) and PromoGate
+(`build/` is a flattened copy, not a submodule).
 
 Not consumers: the two Next.js frontends (AdminGate, ClientGate) manage their own npm
-dependencies and do not use this MSBuild package config. IdGate applies an OpenIddict 7.x
-override on top of the shared versions (see *Service-Specific Version Overrides* above).
+dependencies and do not use this MSBuild package config.
 
 ## Troubleshooting
 
@@ -157,7 +139,7 @@ git submodule update --init --recursive
 ```
 
 ### Package version conflicts
-Check for duplicate `PackageVersion` entries in both shared and local `Directory.Packages.props`. Use the `Update="true"` attribute to override shared versions.
+Check for duplicate `PackageVersion` entries in both shared and local `Directory.Packages.props`. Override with `<PackageVersion Update="<Id>" Version="…" />`, never a second `Include`.
 
 ### Build errors after submodule update
 ```bash
