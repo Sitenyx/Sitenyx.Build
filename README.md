@@ -125,8 +125,7 @@ The shared configuration includes:
 This shared configuration is consumed by **every Sitenyx .NET backend microservice** —
 all of the Gates listed in the platform service inventory (`AGENTS.md`) — plus the shared
 `Core` framework. It is imported as the `build` submodule in each service's
-`Directory.Build.props`. Exceptions: AgentGate (no `build/` yet — local pins) and PromoGate
-(`build/` is a flattened copy, not a submodule).
+`Directory.Build.props`. Exception: PromoGate (`build/` is a flattened copy, not a submodule).
 
 Not consumers: the two Next.js frontends (AdminGate, ClientGate) manage their own npm
 dependencies and do not use this MSBuild package config.
