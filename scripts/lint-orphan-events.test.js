@@ -226,6 +226,94 @@ public abstract class HandleMessages<TMessage> : IHandleMessages<TMessage>
 });
 
 // ─────────────────────────────────────────────────────────────────────────
+// Test 5 — a handler that implements several IHandleMessages<> consumes
+// EVERY event it lists, not only the first one after the ':' (BL-a03ce77c).
+// Covers the three shapes found in the Gates: one line, one interface per
+// line, and a primary-constructor base class listed before the interface.
+// ─────────────────────────────────────────────────────────────────────────
+
+test("lintOrphans: every IHandleMessages<> in a base list counts as a consumer", () => {
+  const events = [
+    "AlphaIntegrationEvent",
+    "BetaIntegrationEvent",
+    "GammaIntegrationEvent",
+    "DeltaIntegrationEvent",
+    "EpsilonEvent",
+  ];
+  const files = {};
+  for (const e of events) {
+    files[`Core/Shared.Contracts/Events/${e}.cs`] =
+      `namespace Shared.Contracts.Events;\n\npublic record ${e}(Guid TenantId);\n`;
+  }
+  files["FanGate/src/Application/Messaging/Handlers/Self/FanoutHandler.cs"] = `
+public sealed class FanoutHandler(ILogger<FanoutHandler> logger)
+    : IHandleMessages<AlphaIntegrationEvent>, IHandleMessages<BetaIntegrationEvent>
+{
+}
+`;
+  files["FanGate/src/Application/Messaging/Handlers/Self/MultiLineHandler.cs"] = `
+public sealed class MultiLineHandler :
+    IHandleMessages<GammaIntegrationEvent>,
+    IHandleMessages<global::Shared.Contracts.Events.DeltaIntegrationEvent>
+{
+}
+`;
+  files["FanGate/src/Application/Messaging/Handlers/DomainHandler.cs"] = `
+public sealed class DomainHandler(
+    IOpenIddictApplicationManager applicationManager,
+    ILogger<DomainHandler> logger
+) : BaseDomainHandler(applicationManager, logger), IHandleMessages<EpsilonEvent>
+{
+}
+`;
+  const root = makeFixturePlatform(files);
+
+  const consumed = lint.findConsumedEvents(root);
+  for (const e of events) {
+    assert.ok(consumed.has(e), `expected ${e} to be found as consumed`);
+  }
+
+  const { violations } = lint.lintOrphans(root);
+  assert.deepEqual(
+    violations.map((v) => v.eventName),
+    [],
+    "no listed event may be reported as an orphan",
+  );
+});
+
+// ─────────────────────────────────────────────────────────────────────────
+// Test 6 — the violation message tells the developer the marker may sit
+// anywhere in the declaring file, matching how ORPHAN_OK_MARKER is tested
+// (whole file), not "the top of the file" (BL-f3750ef8).
+// ─────────────────────────────────────────────────────────────────────────
+
+test("lintOrphans: violation message says the marker may go anywhere in the file", () => {
+  const root = makeFixturePlatform({
+    "Core/Shared.Contracts/Events/LonelyIntegrationEvent.cs":
+      "namespace Shared.Contracts.Events;\n\npublic record LonelyIntegrationEvent(Guid TenantId);\n",
+    "BarGate/src/Application/Placeholder.cs": "// no consumers here\n",
+  });
+
+  const { violations } = lint.lintOrphans(root);
+  assert.equal(violations.length, 1, "expected exactly 1 violation");
+  assert.match(violations[0].message, /anywhere in the declaring file/);
+  assert.doesNotMatch(violations[0].message, /top of the file/);
+});
+
+test("lintOrphans: a marker below line 50 still exempts the event (whole-file scan)", () => {
+  const filler = Array.from({ length: 60 }, (_, i) => `// line ${i + 1}`).join("\n");
+  const root = makeFixturePlatform({
+    "Core/Shared.Contracts/Events/DeepMarkerIntegrationEvent.cs":
+      `namespace Shared.Contracts.Events;\n${filler}\n` +
+      "// SX-ORPHAN-OK: fan-and-forget\npublic record DeepMarkerIntegrationEvent(Guid TenantId);\n",
+    "BarGate/src/Application/Placeholder.cs": "// no consumers here\n",
+  });
+
+  const { violations } = lint.lintOrphans(root);
+  assert.equal(violations.length, 0, "a marker on line 60+ must still exempt the event");
+});
+
+// ─────────────────────────────────────────────────────────────────────────
 // Report
 // ─────────────────────────────────────────────────────────────────────────
 

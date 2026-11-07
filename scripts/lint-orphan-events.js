@@ -26,8 +26,8 @@
  *     (a) at least one `IHandleMessages<TThatEvent>` consumer somewhere
  *         under any sibling `*Gate/src/` tree
  *     OR
- *     (b) a `// SX-ORPHAN-OK: <reason>` marker comment in the event's
- *         declaring file (top 50 lines).
+ *     (b) a `// SX-ORPHAN-OK: <reason>` marker comment anywhere in the
+ *         event's declaring file.
  *
  * SCANS:
  *   - Core/Shared.Contracts/Events/**\/*.cs — collects every event type
@@ -37,8 +37,9 @@
  *     without a suffix match).
  *   - <Gate>/src/**\/*.cs — collects every TEvent referenced as the type
  *     parameter of `IHandleMessages<TEvent>`, `HandleMessages<TEvent, _>`,
- *     or `BaseHandleMessages<TEvent>` (mirrors lint-subscribe-matrix.js
- *     so the two rules see exactly the same consumer surface).
+ *     or `BaseHandleMessages<TEvent>`. Every `IHandleMessages<TEvent>` in a
+ *     base list counts, not only the first one after the `:` — a fan-out
+ *     handler lists several (`: IHandleMessages<A>, IHandleMessages<B>`).
  *
  * MATCHES (event-decl → consumer):
  *   Short type name equality after stripping `global::Namespace.` prefixes
@@ -46,12 +47,11 @@
  *   helper for symmetric semantics.
  *
  * EXEMPTIONS:
- *   1. File-level marker `// SX-ORPHAN-OK: <reason>` in the event-declaring
- *      file's top 50 lines. The reason text is free-form (typical values:
- *      "fan-and-forget", "future / cross-cutting signal", "platform-global
- *      table eviction"). Per the audit convention the marker can also live
- *      INSIDE the file body alongside the record declaration — we scan the
- *      whole file body once per event declaration to be conservative.
+ *   1. File-level marker `// SX-ORPHAN-OK: <reason>` anywhere in the
+ *      event-declaring file (the whole file body is scanned, so the marker
+ *      may sit at the top or alongside the record declaration). The reason
+ *      text is free-form (typical values: "fan-and-forget", "future /
+ *      cross-cutting signal", "platform-global table eviction").
  *   2. Events under `Shared.Contracts/Events/<GateFolder>/` are still
  *      scanned — folder structure is organisational, not a scope gate.
  *   3. Generic type parameter names (TMessage, TEvent, T, …) discovered in
@@ -80,11 +80,11 @@
  *       Shared.Contracts.Events but no IHandleMessages<MomsRefundIssuedIntegrationEvent>
  *       consumer was found across any *Gate/src/ tree, and the file does not
  *       carry a `// SX-ORPHAN-OK: <reason>` marker. Either wire a consumer
- *       Gate to handle the event, or add the marker comment to the top of
- *       the file (free-form reason text).
+ *       Gate to handle the event, or add the marker comment anywhere in the
+ *       declaring file (free-form reason text).
  *
  * See: Core/Sitenyx.Analyzers/DiagnosticIds.cs SX0007 entry,
- *      qa-findings/cross-gate/_ORPHAN-EVENT-AUDIT-2026-05-25.md.
+ *      Core/docs/analyzers/SITENYX002.md (the SX0007 successor note).
  */
 
 "use strict";
@@ -97,9 +97,9 @@ const path = require("path");
 // ─────────────────────────────────────────────────────────────────────────
 
 // File-level exemption marker. A file with this comment anywhere within
-// its body opts out of the check. Whole-file scan (not just top 50 lines)
-// because the orphan audit's convention sometimes places the marker
-// alongside the record declaration rather than at file top.
+// its body opts out of the check. Whole-file scan because the orphan
+// audit's convention sometimes places the marker alongside the record
+// declaration rather than at file top.
 const ORPHAN_OK_MARKER = /\/\/\s*SX-ORPHAN-OK\s*:/;
 
 // Event declaration patterns inside Shared.Contracts/Events/. Sitenyx event
@@ -110,11 +110,14 @@ const ORPHAN_OK_MARKER = /\/\/\s*SX-ORPHAN-OK\s*:/;
 const EVENT_RECORD_PATTERN =
   /\b(?:public|internal)?\s*(?:sealed\s+|abstract\s+)?(?:record|class)\s+([A-Z][A-Za-z0-9_]*(?:Event|IntegrationEvent))\b/g;
 
-// Consumer patterns — kept in sync with lint-subscribe-matrix.js so SX0005
-// and SX0007 see the same consumer surface by construction.
+// Consumer patterns. The HandleMessages / BaseHandleMessages shapes match
+// lint-subscribe-matrix.js; the IHandleMessages shape is wider than its copy
+// there: it also matches after a ',' so the second and later interfaces of a
+// base list count (BL-a03ce77c). A base CLASS must come first in a C# base
+// list, so the two class shapes stay anchored to ':'.
 const CONSUMER_PATTERNS = [
-  // : IHandleMessages<Event>
-  /:\s*IHandleMessages\s*<\s*([A-Za-z_][\w.:<>,\s]*?)\s*>/g,
+  // : IHandleMessages<Event>   or   , IHandleMessages<Event>
+  /[:,]\s*IHandleMessages\s*<\s*([A-Za-z_][\w.:<>,\s]*?)\s*>/g,
   // : HandleMessages<Event, TDbContext>  (Core's generic base)
   /:\s*HandleMessages\s*<\s*([A-Za-z_][\w.:]*?)\s*,/g,
   // : BaseHandleMessages<Event>          (service-local convenience base)
@@ -222,8 +225,9 @@ function findEventDeclarations(platformRoot) {
 
 // Returns Set<string> of event short names that are consumed by ANY Gate
 // across the platform (union over every Gate root's src/ tree). Mirrors
-// lint-subscribe-matrix.js's handler-discovery semantics; the only delta
-// is the aggregation across Gates (vs. per-Gate there).
+// lint-subscribe-matrix.js's handler-discovery semantics with two deltas:
+// the aggregation across Gates (vs. per-Gate there), and the wider
+// IHandleMessages pattern (see CONSUMER_PATTERNS).
 function findConsumedEvents(platformRoot) {
   const out = new Set();
   for (const gateRoot of listGateRoots(platformRoot)) {
@@ -292,7 +296,7 @@ function lintOrphans(platformRoot) {
         `IHandleMessages<${d.eventName}> consumer was found across any *Gate/src/ ` +
         `tree, and the file does not carry a \`// SX-ORPHAN-OK: <reason>\` marker. ` +
         `Either wire a consumer Gate to handle the event, or add the marker comment ` +
-        `to the top of the file (free-form reason text). See ` +
+        `anywhere in the declaring file (free-form reason text). See ` +
         `Core/Sitenyx.Analyzers/DiagnosticIds.cs SX0007.`,
     });
   }
